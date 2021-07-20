@@ -1,0 +1,18 @@
+/**
+ * aThemes - Container Block (editor)
+ * Styles for back and front end
+ *
+ */
+.athemes-blocks-block-container-wrapper {
+    position: relative;
+    display: flex;
+    .athemes-blocks-block-container-wrapper-content {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        > p:last-child,
+        > ul:last-child {
+            margin-bottom: 0;
+        }
+    }
+}

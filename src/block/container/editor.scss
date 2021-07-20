@@ -1,0 +1,61 @@
+/**
+ * aThemes - Block Container (editor)
+ * Styles for back end only
+ *
+ */
+
+// Import the common styles for the editor
+// Do not import this file in others blocks
+// The purpose here is not need to "eject" the guten-block
+@import "../../editor-common";
+
+// Remove default max-width
+div[data-type="athemes/athemes-blocks-block-container"] {
+    max-width: none;
+    &[data-align="full"] {
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+}
+
+// Style button to append inner blocks
+.athemes-blocks-block-container-wrapper {
+    .athemes-blocks-block-container-wrapper-content {
+        .block-editor-block-list__block,
+        .block-list-appender {
+            max-width: none !important;
+            button {
+                background: transparent;
+                color: #000;
+                border-width: 1px;
+            }
+        }
+        .wp-block + .block-list-appender,
+        #elementor-editor + .block-list-appender {
+            .block-editor-button-block-appender {
+                opacity: 0;
+                height: 1px;
+                padding: 0;
+                > svg {
+                    position: absolute;
+                    top: -12px;
+                    left: 50%;
+                    transform: translate3d(-50%, 0, 0);
+                    background: #000;
+                    path {
+                        fill: #FFF;
+                    }
+                }
+            }
+        }
+
+        &:hover {
+            .wp-block + .block-list-appender,
+            #elementor-editor + .block-list-appender {
+                .block-editor-button-block-appender {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
