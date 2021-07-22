@@ -8,7 +8,7 @@ Contributors: aThemes
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-With aThemes Blocks, you can extend the Gutenberg block editor with additional functionality.
+Extend the Gutenberg Block Editor with additional functionality.
 
 == Description ==
 
