@@ -22,7 +22,7 @@ define( 'ATBLOCKS_FILE',  __FILE__ );
 // Plugin Loader
 if ( ! version_compare( PHP_VERSION, '5.6', '>=' ) ) {
 	add_action( 'admin_notices', 'athemes_blocks_uncompatible_php_version' );
-} elseif ( ! version_compare( get_bloginfo( 'version' ), '5.0', '>=' ) ) {
+} elseif ( ! version_compare( get_bloginfo( 'version' ), '5.5', '>=' ) ) {
 	add_action( 'admin_notices', 'athemes_blocks_uncompatible_wp_version' );
 } else {
 	require_once 'classes/class-athemes-blocks-loader.php';
@@ -43,7 +43,7 @@ function athemes_blocks_uncompatible_php_version() {
  * 
  */
 function athemes_blocks_uncompatible_wp_version() {
-	$message        = sprintf( esc_html__( 'aThemes Blocks plugin requires WordPress version %s+. Please update the WordPress version to get the plugin working.', 'athemes-blocks' ), '5.0' );
+	$message        = sprintf( esc_html__( 'aThemes Blocks plugin requires WordPress version %s+. Please update the WordPress version to get the plugin working.', 'athemes-blocks' ), '5.5' );
 	$message_output = sprintf( '<div class="error">%s</div>', wpautop( $message ) );
 	echo wp_kses_post( $message_output );
 }

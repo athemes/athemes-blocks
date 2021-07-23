@@ -44,18 +44,20 @@ You can report bugs on our [support forum](https://forums.athemes.com/) or send 
 
 [DOCUMENTATION](https://docs.athemes.com/category/331-athemes-blocks) || [SUPPORT](https://forums.athemes.com/)
 
-Want to know all the latest news and be part of the aThemes community?
+= Want to know all the latest news and be part of the aThemes community? =
+
 [Join our Circle Group](https://athemes.circle.so/)
 
-Want to contribute to the plugin?
+= Want to contribute to the plugin? =
+
 [Find aThemes Blocks on Github](https://github.com/athemes/athemes-blocks)
 
 == Screenshots ==
 
-1. Container Block with background image and default GB heading and paragraph inside.
+1. Container Block with title and columns inside.
 2. Container Block with background image and default GB heading and paragraph inside aligned to left.
-3. Container Block with gray background color and default GB columns with text and image.
-4. Responsive settings.
+3. Container Block with background image and default GB heading and paragraph inside.
+4. Container Block with gray background color and default GB columns with text and image.
 
 == Installation ==
 
