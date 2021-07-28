@@ -42,12 +42,35 @@ import {
 // Block dependencies
 import style from './style.js';
 
+// Check if element is in viewport of gutenberg editor
+function isElementInViewport(el) {
+    const rect = el.getBoundingClientRect(),
+        gbEditor = document.querySelector('.interface-interface-skeleton__content').getBoundingClientRect(),
+        elemTop = rect.top,
+        elemBottom = rect.bottom,
+        isVisible = elemTop < gbEditor.height && elemBottom >= 0;
+
+    return isVisible;
+}
+
 // Edit
 const edit = ( props ) => {
+
+    const self = this;
     const {
-        deviceType,
         setAttributes
     } = props
+    const {
+        deviceType
+    } = props.attributes
+
+    // Parallax Effect
+    this.parallaxEventHandler = (el) => {
+        if( isElementInViewport( el ) ) {
+            var top = el.getBoundingClientRect().top / 10;
+            el.style = 'transform: translate3d(0, '+ ( top ) +'px, 0);';
+        }
+    }
 
     useEffect(() => {
 
@@ -56,9 +79,22 @@ const edit = ( props ) => {
 
         // Set block class in the inspector wrapper
         toggle_editor_athemes_block_selected_class( props );
+        
+        // Parallax
+        const editorWindow = document.querySelector('.interface-interface-skeleton__content');
+        
+        if( editorWindow !== null && props.attributes.wrapperBackgroundImageType == 'cover' && props.attributes.wrapperBackgroundEffect == 'parallax' ) {
+            const el = document.querySelector(`#athemes-blocks-block-${ props.clientId.substr( 0, 8 ) } .athemes-blocks-block-container-bg-cover.athemes-blocks-block-container-bg-effect-parallax .athemes-blocks-background-image`);
+
+            setTimeout(function(){
+                editorWindow.addEventListener( 'scroll', function() {
+                    self.parallaxEventHandler(el);
+                } );
+            }, 1500);
+        }
 
     });
-    
+
     let css       = style( props, deviceType ),
         appendCSS = '';
 
@@ -80,12 +116,28 @@ const edit = ( props ) => {
         document.querySelector(`#athemes-blocks-block-${ deviceType.toLowerCase() }-${ props.clientId.substr( 0, 8 ) }`).innerHTML = appendCSS;
     }
 
-    let wrapperStyleAtt = '';
+    let backgroundImageAtts = '';
     if( props.attributes.wrapperBackgroundType == 'image' && props.attributes.wrapperBackgroundImage != null ) {
-        wrapperStyleAtt = {
-            style: {
-                backgroundImage: `url(${ props.attributes.wrapperBackgroundImage.url })`
-            }
+        const imageSizes = props.attributes.wrapperBackgroundImage.sizes;
+        
+        let srcset = '',
+            sizes  = '';
+
+        for( let key in imageSizes ) {
+            srcset += `${ imageSizes[ key ].url } ${ imageSizes[ key ].width }w, `;
+        }
+
+        sizes += `(max-width: ${ props.attributes.wrapperBackgroundImage.width }px) 100vw, ${ props.attributes.wrapperBackgroundImage.width }px`;
+
+        backgroundImageAtts = {
+            className: 'athemes-blocks-background-image',
+            width: props.attributes.wrapperBackgroundImage.width,
+            height: props.attributes.wrapperBackgroundImage.height,
+            loading: 'lazy',
+            src: props.attributes.wrapperBackgroundImage.originalImageURL,
+            srcSet: srcset,
+            sizes: sizes,
+            alt: props.attributes.wrapperBackgroundImage.alt
         }
     }
 
@@ -161,7 +213,7 @@ const edit = ( props ) => {
                             />
                         </BaseControl>
                         
-                        <ResponsiveControls />
+                        <ResponsiveControls blockProps={ props } />
                         <BaseControl 
                             className="athemes-blocks-base-control"
                             label={ __( 'Content Alignment', 'athemes-blocks' ) } />
@@ -567,7 +619,12 @@ const edit = ( props ) => {
 
             <div className={ `athemes-blocks-editor-preview-${ deviceType.toLowerCase() }` }>
                 <div id={ props.attributes.wrapperID ? props.attributes.wrapperID : `athemes-blocks-block-${props.clientId.substr( 0, 8 )}` } className={ `athemes-blocks-block athemes-blocks-block-${props.clientId.substr( 0, 8 )} athemes-blocks-block-container` }>
-                    <div className="athemes-blocks-block-container-wrapper" { ...wrapperStyleAtt }>
+                    <div className={ `athemes-blocks-block-container-wrapper athemes-blocks-block-container-bg-${ props.attributes.wrapperBackgroundImageType } athemes-blocks-block-container-bg-effect-${ props.attributes.wrapperBackgroundEffect }` }>
+                        {
+                            props.attributes.wrapperBackgroundType == 'image' && props.attributes.wrapperBackgroundImage != null && (
+                                <img { ...backgroundImageAtts } />
+                            )
+                        }
                         <div className="athemes-blocks-block-container-wrapper-content">
                             <InnerBlocks
                                 templateLock={ false }
@@ -582,14 +639,9 @@ const edit = ( props ) => {
 }
 
 export default compose(
-    withSelect( ( select ) => { 
-
-        const { __experimentalGetPreviewDeviceType = null } = select( 'core/edit-post' );
-    
-        let deviceType = __experimentalGetPreviewDeviceType ? __experimentalGetPreviewDeviceType() : null;
-    
+    withSelect( ( props ) => { 
         return {
-            deviceType: deviceType
+            deviceType: props.deviceType
         }
     }),
     withCustomAdvancedControls()

@@ -19,12 +19,13 @@ With aThemes Blocks, you can extend the Gutenberg block editor with additional f
 CURRENTLY, ATHEMES BLOCKS INCLUDE A RESPONSIVE CONTAINER BLOCK WITH ADVANCED SETTINGS THAT ALLOWS YOU TO ADD MULTIPLE BLOCKS IN A SINGLE ROW.
 
 Our responsive container block lets you:
-- Add up to six columns to each row
-- Set a different text and background color combination for each block within the same row
-- Access the default settings of each block (e.g. font settings for text blocks, sizing and alignment settings for image blocks, etc.)
-- Customize the overall style of the container (content width, border radius, z-index, content alignment, background, spacing, and more)
-- Define different layouts and styles for mobile, tablet, and desktop screens
-- Create complex layouts easily, without the use of a page builder plugin
+
+* Add up to six columns to each row
+* Set a different text and background color combination for each block within the same row
+* Access the default settings of each block (e.g. font settings for text blocks, sizing and alignment settings for image blocks, etc.)
+* Customize the overall style of the container (content width, border radius, z-index, content alignment, background, spacing, and more)
+* Define different layouts and styles for mobile, tablet, and desktop screens
+* Create complex layouts easily, without the use of a page builder plugin
 
 As the plugin is under active development... MORE ATHEMES BLOCKS ARE COMING SOON!
 

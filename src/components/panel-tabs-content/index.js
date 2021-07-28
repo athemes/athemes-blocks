@@ -6,10 +6,19 @@
  */
    
 function panelTabsContent( props ) {
-    document.querySelector('#editor').classList.remove('athemes-blocks-tab-active-layout');
-    document.querySelector('#editor').classList.remove('athemes-blocks-tab-active-style');
-    document.querySelector('#editor').classList.remove('athemes-blocks-tab-active-advanced');
-    document.querySelector('#editor').classList.add( `athemes-blocks-tab-active-${ props.blockProps.attributes.tabSelected }` );
+    let editor = '';
+    if( document.querySelector( '#editor' ) !== null ) {
+        editor = document.querySelector( '#editor' );
+    } else if( document.querySelector( '#widgets-editor' ) !== null ) {
+        editor = document.querySelector( '#widgets-editor' );
+    } else {
+        editor = document.querySelector( '#customize-theme-controls' );
+    }
+    
+    editor.classList.remove('athemes-blocks-tab-active-layout');
+    editor.classList.remove('athemes-blocks-tab-active-style');
+    editor.classList.remove('athemes-blocks-tab-active-advanced');
+    editor.classList.add( `athemes-blocks-tab-active-${ props.blockProps.attributes.tabSelected }` );
 
     let hide_show_class = 'athemes-element-hide';
     if( props.dataTabID == props.blockProps.attributes.tabSelected ) {

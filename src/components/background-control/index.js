@@ -154,11 +154,10 @@ function CustomBackgroundControl( props ) {
                     { props.blockProps.attributes.wrapperBackgroundImage && (
                         <BaseControl>
                             <SelectControl
-                                label={ __( 'Background Size', 'athemes-blocks' ) }
-                                value={ props.blockProps.attributes.wrapperBackgroundSize }
-                                onChange={ ( value ) => { setAttributes( { wrapperBackgroundSize: value } ) } }
+                                label={ __( 'Background Image Type', 'athemes-blocks' ) }
+                                value={ props.blockProps.attributes.wrapperBackgroundImageType }
+                                onChange={ ( value ) => { setAttributes( { wrapperBackgroundImageType: value } ) } }
                                 options={ [
-                                    { value: 'auto', label: __( 'Auto', 'athemes-blocks' ) },
                                     { value: 'contain', label: __( 'Contain', 'athemes-blocks' ) },
                                     { value: 'cover', label: __( 'Cover', 'athemes-blocks' ) }
                                 ] }
@@ -167,40 +166,35 @@ function CustomBackgroundControl( props ) {
                                 label={ __( 'Background Position', 'athemes-blocks' ) }
                                 value={ props.blockProps.attributes.wrapperBackgroundPosition }
                                 onChange={ ( value ) => { setAttributes( { wrapperBackgroundPosition: value } ) } }
-                                options={ [
-                                    { value: 'top left', label: __( 'Top left', 'athemes-blocks' ) },
-                                    { value: 'top center', label: __( 'Top center', 'athemes-blocks' ) },
-                                    { value: 'top right', label: __( 'Top right', 'athemes-blocks' ) },
-                                    { value: 'center left', label: __( 'Center left', 'athemes-blocks' ) },
-                                    { value: 'center center', label: __( 'Center', 'athemes-blocks' ) },
-                                    { value: 'center right', label: __( 'Center right', 'athemes-blocks' ) },
-                                    { value: 'bottom left', label: __( 'Bottom left', 'athemes-blocks' ) },
-                                    { value: 'bottom center', label: __( 'Bottom center', 'athemes-blocks' ) },
-                                    { value: 'bottom right', label: __( 'Bottom right', 'athemes-blocks' ) }
-                                ] }
+                                options={ 
+                                    'cover' === props.blockProps.attributes.wrapperBackgroundImageType ?
+                                        [
+                                            { value: 'top', label: __( 'Top', 'athemes-blocks' ) },
+                                            { value: 'center', label: __( 'Center', 'athemes-blocks' ) },
+                                            { value: 'bottom', label: __( 'Bottom', 'athemes-blocks' ) }
+                                        ]
+                                    :
+                                        [
+                                            { value: 'center', label: __( 'Center', 'athemes-blocks' ) },
+                                            { value: 'left', label: __( 'Left', 'athemes-blocks' ) },
+                                            { value: 'right', label: __( 'Right', 'athemes-blocks' ) }
+                                        ]
+                                }
                             />
-                            <SelectControl
-                                label={ __( 'Background Attachment', 'athemes-blocks' ) }
-                                value={ props.blockProps.attributes.wrapperBackgroundAttachment }
-                                onChange={ ( value ) => { setAttributes( { wrapperBackgroundAttachment: value } ) } }
-                                options={ [
-                                    { value: 'fixed', label: __( 'Fixed', 'athemes-blocks' ) },
-                                    { value: 'scroll', label: __( 'Scroll', 'athemes-blocks' ) }
-                                ] }
-                            />
-                            <SelectControl
-                                label={ __( 'Background Repeat', 'athemes-blocks' ) }
-                                value={ props.blockProps.attributes.wrapperBackgroundRepeat }
-                                onChange={ ( value ) => { setAttributes( { wrapperBackgroundRepeat: value } ) } }
-                                options={ [
-                                    { value: 'no-repeat', label: __( 'No repeat', 'athemes-blocks' ) },
-                                    { value: 'repeat', label: __( 'Repeat', 'athemes-blocks' ) },
-                                    { value: 'repeat-x', label: __( 'Repeat X', 'athemes-blocks' ) },
-                                    { value: 'repeat-y', label: __( 'Repeat Y', 'athemes-blocks' ) },
-                                    { value: 'round', label: __( 'Round', 'athemes-blocks' ) },
-                                    { value: 'space', label: __( 'Space', 'athemes-blocks' ) }
-                                ] }
-                            />
+                            {
+                                'cover' === props.blockProps.attributes.wrapperBackgroundImageType && (
+                                    <SelectControl
+                                        label={ __( 'Background Effect', 'athemes-blocks' ) }
+                                        value={ props.blockProps.attributes.wrapperBackgroundEffect }
+                                        onChange={ ( value ) => { setAttributes( { wrapperBackgroundEffect: value } ) } }
+                                        options={ [
+                                            { value: 'parallax', label: __( 'Fixed / Parallax', 'athemes-blocks' ) },
+                                            { value: 'scroll', label: __( 'Scroll', 'athemes-blocks' ) }
+                                        ] }
+                                    />
+                                )
+                            }
+                            
                         </BaseControl>
                     )}
                 </BaseControl>

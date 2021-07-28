@@ -58,4 +58,18 @@ div[data-type="athemes/athemes-blocks-block-container"] {
             }
         }
     }
+
+    &.athemes-blocks-block-container-bg-contain {
+        .athemes-blocks-background-image {
+            transform: none !important;
+        }
+    }
+
+    &.athemes-blocks-block-container-bg-cover {
+        &.athemes-blocks-block-container-bg-effect-scroll {
+            .athemes-blocks-background-image {
+                transform: none !important;
+            }
+        }
+    }
 }

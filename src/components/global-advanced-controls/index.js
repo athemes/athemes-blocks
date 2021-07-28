@@ -12,17 +12,12 @@ const {
     PanelBody, 
 } = wp.components;
 
-const { useSelect } = wp.data;
-
 // <GlobalAdvancedControls />
 function GlobalAdvancedControls( props ) {
-    const deviceType = useSelect( ( select ) => {
-        return select( 'core/edit-post' ).__experimentalGetPreviewDeviceType();
-    }, [] );
 
     const {
-        setAttributes
-    } = props.blockProps;
+        deviceType
+    } = props.blockProps.attributes
 
     return (
         <BaseControl>

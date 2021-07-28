@@ -11,6 +11,10 @@ import {
 
 // Attributes
 export default {
+    deviceType: {
+        type: 'string',
+        default: 'Desktop'
+    },
     // Block ID
     block_id: {
         type: 'string',
@@ -21,7 +25,7 @@ export default {
         type: 'string',
         default: 'style'
     },
-    // Block Toolbar
+    // Block Alignment
     align: {
         type: 'string',
         default: 'full'

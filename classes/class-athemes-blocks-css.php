@@ -45,11 +45,9 @@ if ( ! class_exists( 'ATBLOCKS_Css' ) ) {
                 'wrapperBackgroundGradientColor2Position' => 100,
                 'wrapperBackgroundGradientDegree' => 45,
                 'wrapperBackgroundImage' => null,
-                'wrapperBackgroundImageSize' => 'original',
-                'wrapperBackgroundRepeat' => 'no-repeat',
-                'wrapperBackgroundSize' => 'cover',
+                'wrapperBackgroundImageType' => 'cover',
                 'wrapperBackgroundPosition' => 'center',
-                'wrapperBackgroundAttachment' => 'scroll',
+                'wrapperBackgroundEffect' => 'scroll',
 
                 'wrapperPaddingToggle' => true,
                 'wrapperPaddingToggleTablet' => true,
@@ -183,14 +181,10 @@ if ( ! class_exists( 'ATBLOCKS_Css' ) ) {
             }
             
             if( $atts['wrapperBackgroundType'] == 'image' && $atts['wrapperBackgroundImage'] != null ) {
-                $desktopSelectors['.athemes-blocks-block-container-wrapper'] = array_merge(
-                    $desktopSelectors['.athemes-blocks-block-container-wrapper'],
-                    array(
-                        'background-repeat' => $atts['wrapperBackgroundRepeat'],
-                        'background-size' => $atts['wrapperBackgroundSize'],
-                        'background-position' => $atts['wrapperBackgroundPosition'],
-                        'background-attachment' => $atts['wrapperBackgroundAttachment']
-                    )
+                $desktopSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-background-image'] = array(
+                    'object-fit' => $atts['wrapperBackgroundImageType'],
+                    'object-position' => $atts['wrapperBackgroundPosition'],
+                    'font-family' => "'object-fit: cover; object-position: bottom;';" // IE support
                 );
             }
 
@@ -292,7 +286,7 @@ if ( ! class_exists( 'ATBLOCKS_Css' ) ) {
             // Mount CSS to render
             $css .= ATBLOCKS_Helpers::mount_css( $desktopSelectors, $id, false );
             $css .= ATBLOCKS_Helpers::mount_css( $tabletSelectors, $id, apply_filters( 'athemes_blocks_css_tablet_breakpoint', 991 ) );
-            $css .= ATBLOCKS_Helpers::mount_css( $mobileSelectors, $id, apply_filters( 'athemes_blocks_css_mobile_breakpoint', 767 ) );
+            $css .= ATBLOCKS_Helpers::mount_css( $mobileSelectors, $id, apply_filters( 'athemes_blocks_css_mobile_breakpoint', 719 ) );
 
             return $css;
         }

@@ -11,7 +11,14 @@ const { Icon } = wp.components;
  *
  */
 export function toggle_editor_athemes_block_selected_class( props ) {
-    const editor = document.querySelector( '#editor' );
+    let editor = '';
+    if( document.querySelector( '#editor' ) !== null ) {
+        editor = document.querySelector( '#editor' );
+    } else if( document.querySelector( '#widgets-editor' ) !== null ) {
+        editor = document.querySelector( '#widgets-editor' );
+    } else {
+        editor = document.querySelector( '#customize-theme-controls' );
+    }
 
     if( props.isSelected ) {
         editor.classList.add( 'athemes-block-selected' );
@@ -64,7 +71,7 @@ export function get_block_responsive_attr_value( props, deviceType, attribute, u
  */
 export function mount_css( id, selectors, deviceType ) {
     let css = '',
-        device = deviceType.toLowerCase();
+        device = deviceType ? deviceType.toLowerCase() : 'desktop';
     
     for( let i in selectors ) {
         let css_values = selectors[i],
@@ -307,15 +314,7 @@ export function control_atts( type ) {
                 wrapperBackgroundImage: {
                     type: 'object'
                 },
-                wrapperBackgroundImageSize: {
-                    type: 'string',
-                    default: 'original'
-                },
-                wrapperBackgroundRepeat: {
-                    type: 'string',
-                    default: 'no-repeat'
-                },
-                wrapperBackgroundSize: {
+                wrapperBackgroundImageType: {
                     type: 'string',
                     default: 'cover'
                 },
@@ -323,7 +322,7 @@ export function control_atts( type ) {
                     type: 'string',
                     default: 'center'
                 },
-                wrapperBackgroundAttachment: {
+                wrapperBackgroundEffect: {
                     type: 'string',
                     default: 'scroll'
                 }

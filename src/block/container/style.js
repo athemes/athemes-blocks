@@ -21,6 +21,11 @@ function style( props, deviceType ) {
     desktopSelectors['.athemes-blocks-block-container-wrapper'] = {}
     tabletSelectors['.athemes-blocks-block-container-wrapper']  = {}
     mobileSelectors['.athemes-blocks-block-container-wrapper']  = {}
+
+    // Container Wrapper Background Image
+    desktopSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-background-image'] = {}
+
+    // Container Wrapper Content
     desktopSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-block-container-wrapper-content'] = {}
     tabletSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-block-container-wrapper-content']  = {}
     mobileSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-block-container-wrapper-content']  = {}
@@ -49,10 +54,8 @@ function style( props, deviceType ) {
         desktopSelectors['.athemes-blocks-block-container-wrapper']['background'] = `linear-gradient( ${ atts.wrapperBackgroundGradientDegree }deg, ${ atts.wrapperBackgroundGradientColor1 } ${ atts.wrapperBackgroundGradientColor1Position }%, ${ atts.wrapperBackgroundGradientColor2 } ${ atts.wrapperBackgroundGradientColor2Position }% );`;
     }
     if( atts.wrapperBackgroundType == 'image' && atts.wrapperBackgroundImage != null ) {
-        desktopSelectors['.athemes-blocks-block-container-wrapper']['background-repeat'] = atts.wrapperBackgroundRepeat; 
-        desktopSelectors['.athemes-blocks-block-container-wrapper']['background-size'] = atts.wrapperBackgroundSize;
-        desktopSelectors['.athemes-blocks-block-container-wrapper']['background-position'] = atts.wrapperBackgroundPosition;
-        desktopSelectors['.athemes-blocks-block-container-wrapper']['background-attachment'] = atts.wrapperBackgroundAttachment; 
+        desktopSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-background-image']['object-fit'] = atts.wrapperBackgroundImageType;
+        desktopSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-background-image']['object-position'] = atts.wrapperBackgroundPosition;
     }
 
     // Margins

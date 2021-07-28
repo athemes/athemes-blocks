@@ -13,13 +13,6 @@ const {
     BaseControl
 } = wp.components;
 
-const { Fragment } = wp.element;
-
-const { 
-    useSelect, 
-    useDispatch 
-} = wp.data;
-
 // Plugin dependencies
 import { 
     athemes_icons 
@@ -30,15 +23,11 @@ import map from 'lodash/map';
  
 // <ResponsiveControls />
 function ResponsiveControls ( props ) {
-    const deviceType = useSelect( ( select ) => {
-        return select( 'core/edit-post' ).__experimentalGetPreviewDeviceType();
-    }, [] );
+
     const {
-        __experimentalSetPreviewDeviceType: setPreviewDeviceType,
-    } = useDispatch( 'core/edit-post' );
-    const customSetPreviewDeviceType = ( device ) => {
-        setPreviewDeviceType( device );
-    };
+        deviceType
+    } = props.blockProps.attributes
+
     const devices = [
         {
             name: 'Desktop',
@@ -133,6 +122,17 @@ function ResponsiveControls ( props ) {
         currentUnit = customGetValue( props, deviceType, true );
     }
 
+    const setPreviewType = ( deviceType ) => {
+        let previewArea = document.querySelector( '.edit-post-visual-editor__content-area' );
+
+        if( previewArea !== null ) {
+            previewArea.classList.remove('athemes-blocks-responsive-preview-desktop');
+            previewArea.classList.remove('athemes-blocks-responsive-preview-tablet');
+            previewArea.classList.remove('athemes-blocks-responsive-preview-mobile');
+            previewArea.classList.add(`athemes-blocks-responsive-preview-${ deviceType.toLowerCase() }`);
+        }
+    }
+
     return (
         <div className={ 'athemes-blocks-device-type-control' }>
             <div className={ `athemes-blocks-device-type-control-wrapper${ unitOptions.length == 0 || typeof props.toggleSpacement === 'undefined' ? ' no-units' : ' with-units' }` }>
@@ -158,7 +158,10 @@ function ResponsiveControls ( props ) {
                             key={ key }
                             className={ `components-button components-tab-panel__tabs-item ${ itemClass }${ name === deviceType ? ' active-tab' : '' }` }
                             aria-pressed={ deviceType === name }
-                            onClick={ () => customSetPreviewDeviceType( name ) }
+                            onClick={ () => { 
+                                props.blockProps.setAttributes( { deviceType: name } ); 
+                                setPreviewType( name );
+                            } }
                         >
                             { title }
                         </Button>
