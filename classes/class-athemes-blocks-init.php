@@ -122,10 +122,12 @@ if ( ! class_exists( 'ATBLOCKS_Init' ) ) {
                     wp_enqueue_script( 'athemes-blocks-parallax' );
                 } else {
                     $block_widgets = get_option( 'widget_block' );
-                    foreach( $block_widgets as $block_widget ) {
-                        if( isset($block_widget['content']) && strpos( $block_widget['content'], 'wp:athemes/' ) !== FALSE && strpos( $block_widget['content'], 'parallax' ) !== FALSE ) {
-                            wp_enqueue_script( 'athemes-blocks-parallax' );
-                            break;
+                    if( $block_widgets ) {
+                        foreach( $block_widgets as $block_widget ) {
+                            if( isset($block_widget['content']) && strpos( $block_widget['content'], 'wp:athemes/' ) !== FALSE && strpos( $block_widget['content'], 'parallax' ) !== FALSE ) {
+                                wp_enqueue_script( 'athemes-blocks-parallax' );
+                                break;
+                            }
                         }
                     }
                 }
@@ -175,19 +177,21 @@ if ( ! class_exists( 'ATBLOCKS_Init' ) ) {
 
                 // Detect widgets with athemes blocks
                 $block_widgets = get_option( 'widget_block' );
-                foreach( $block_widgets as $block_widget ) {
-                    
-                    if( isset($block_widget['content']) && strpos( $block_widget['content'], 'wp:athemes/' ) !== FALSE ) {
-                        if( has_blocks( $block_widget['content'] ) ) {
-                            $widget_blocks = parse_blocks( $block_widget['content'] );
-        
-                            foreach( $widget_blocks as $block ) {
-                                
-                                $this->generate_athemes_blocks_css( $block );
-        
-                                // Blocks inside Inner Blocks
-                                if( isset( $block['innerBlocks'] ) && count( $block['innerBlocks'] ) > 0 ) {
-                                    $this->search_inner_blocks_for_athemes_blocks( $block['innerBlocks'] );
+                if( $block_widgets ) {
+                    foreach( $block_widgets as $block_widget ) {
+                        
+                        if( isset($block_widget['content']) && strpos( $block_widget['content'], 'wp:athemes/' ) !== FALSE ) {
+                            if( has_blocks( $block_widget['content'] ) ) {
+                                $widget_blocks = parse_blocks( $block_widget['content'] );
+            
+                                foreach( $widget_blocks as $block ) {
+                                    
+                                    $this->generate_athemes_blocks_css( $block );
+            
+                                    // Blocks inside Inner Blocks
+                                    if( isset( $block['innerBlocks'] ) && count( $block['innerBlocks'] ) > 0 ) {
+                                        $this->search_inner_blocks_for_athemes_blocks( $block['innerBlocks'] );
+                                    }
                                 }
                             }
                         }
