@@ -118,6 +118,10 @@ if ( ! class_exists( 'ATBLOCKS_Init' ) ) {
             } else {
                 global $post;
 
+                if( ! isset( $post ) ) {
+                    return;
+                }
+
                 if( strpos( $post->post_content, 'parallax' ) !== FALSE ) {
                     wp_enqueue_script( 'athemes-blocks-parallax' );
                 } else {

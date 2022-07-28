@@ -1,7 +1,7 @@
 === aThemes Blocks ===
 Tags: athemes, blocks, gutenberg, sites
 Requires at least: 5.5
-Tested up to: 5.8
+Tested up to: 6.0
 Requires PHP: 5.6
 Stable tag: trunk
 Contributors: aThemes
@@ -14,7 +14,7 @@ Extend the Gutenberg Block Editor with additional functionality.
 
 == EXTEND THE BLOCK EDITOR ==
 
-With aThemes Blocks, you can extend the Gutenberg block editor with additional functionality. 
+With aThemes Blocks, you can extend the Gutenberg block editor with additional functionality.
 
 CURRENTLY, ATHEMES BLOCKS INCLUDE A RESPONSIVE CONTAINER BLOCK WITH ADVANCED SETTINGS THAT ALLOWS YOU TO ADD MULTIPLE BLOCKS IN A SINGLE ROW.
 
@@ -41,13 +41,13 @@ Yes, It can be used with any properly developed WordPress theme.
 
 = Where can I report a bug or request new features? =
 
-You can report bugs on our [support forum](https://forums.athemes.com/) or send us an email using the [contact form on our website](https://athemes.com/contact/).
+You can report bugs on our [support forum](https://wordpress.org/support/plugin/athemes-blocks/) or send us an email using the [contact form on our website](https://athemes.com/contact/).
 
-[DOCUMENTATION](https://docs.athemes.com/category/331-athemes-blocks) || [SUPPORT](https://forums.athemes.com/)
+[DOCUMENTATION](https://docs.athemes.com/category/331-athemes-blocks) || [SUPPORT](https://wordpress.org/support/plugin/athemes-blocks/)
 
 = Want to know all the latest news and be part of the aThemes community? =
 
-[Join our Circle Group](https://athemes.circle.so/)
+[Join our Community](https://www.facebook.com/groups/athemes/)
 
 = Want to contribute to the plugin? =
 
