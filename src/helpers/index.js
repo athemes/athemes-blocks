@@ -318,6 +318,10 @@ export function control_atts( type ) {
                     type: 'string',
                     default: 'cover'
                 },
+                wrapperBackgroundImageLazyLoading: {
+                    type: 'boolean',
+                    default: true
+                },
                 wrapperBackgroundPosition: {
                     type: 'string',
                     default: 'center'

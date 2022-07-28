@@ -27,11 +27,14 @@ function save(props) {
             className: 'athemes-blocks-background-image',
             width: props.attributes.wrapperBackgroundImage.width,
             height: props.attributes.wrapperBackgroundImage.height,
-            loading: 'lazy',
             src: props.attributes.wrapperBackgroundImage.originalImageURL,
             srcSet: srcset,
             sizes: sizes,
             alt: props.attributes.wrapperBackgroundImage.alt
+        }
+
+        if( props.attributes.wrapperBackgroundImageLazyLoading ) {
+        	backgroundImageAtts.loading = 'lazy';
         }
     }
 

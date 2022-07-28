@@ -16,6 +16,7 @@ const {
     PanelBody, 
     SelectControl, 
     RangeControl, 
+    ToggleControl,
     Button, 
     ButtonGroup, 
     Placeholder
@@ -195,6 +196,15 @@ function CustomBackgroundControl( props ) {
                                 )
                             }
                             
+                        </BaseControl>
+                    )}
+                    { props.blockProps.attributes.wrapperBackgroundImage && (
+                        <BaseControl>
+                            <ToggleControl
+                                label={ __( 'Lazy Loading', 'athemes-blocks' ) }
+                                checked={ props.blockProps.attributes.wrapperBackgroundImageLazyLoading }
+                                onChange={ ( value ) => { setAttributes( { wrapperBackgroundImageLazyLoading: value } ) } }
+                            />
                         </BaseControl>
                     )}
                 </BaseControl>
