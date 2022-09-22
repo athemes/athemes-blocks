@@ -1,52 +1,59 @@
-/*
- * aThemes Blocks
- * Parallax
- */
-
-'use strict';
-
-athemesBlocksDomReady(function () {
-    var elements = document.querySelectorAll( '.athemes-blocks-block-container-bg-cover.athemes-blocks-block-container-bg-effect-parallax .athemes-blocks-background-image' );
-
-    if( elements.length > 0 ) {
-        window.addEventListener( 'scroll', function() {
-            for( var i = 0; i < elements.length; i++ ) {
-                var el = elements[i];
-                if( isElementInViewport( el ) ) {
-                    var top = el.getBoundingClientRect().top / 10;
-
-                    el.style = 'transform: translate3d(0, '+ ( top ) +'px, 0);';
-                }
-            }
-        } );
-    }
-});
-
-function isElementInViewport(el) {
-    var rect = el.getBoundingClientRect(),
-        elemTop = rect.top,
-        elemBottom = rect.bottom,
-        isVisible = elemTop < window.innerHeight && elemBottom >= 0;
-
-    return isVisible;
-}
-
 /**
- * Is the DOM ready?
- *
- * This implementation is coming from https://gomakethings.com/a-native-javascript-equivalent-of-jquerys-ready-method/
- *
- * @param {Function} fn Callback function to run.
+ * aThemes Blocks Parallax v2
  */
+;(function( $ ) {
 
-function athemesBlocksDomReady(fn) {
-    if (typeof fn !== 'function') {
-      return;
-    }
-  
-    if (document.readyState === 'interactive' || document.readyState === 'complete') {
-      return fn();
-    }
-  
-    document.addEventListener('DOMContentLoaded', fn, false);
-}
+  'use strict';
+
+  var botigaParallax = function() {
+
+    var $window   = $(window),
+        $parallax = $('.athemes-blocks-block-container-bg-effect-parallax'),
+        winHeight = $window.height();
+
+    $parallax.each( function() {
+
+      var wrapper       = this,
+          $wrapper      = $(this),
+          wrapperRect   = wrapper.getBoundingClientRect(),
+          wrapperHeight = wrapperRect.height,
+          wrapperTop    = wrapperRect.top,
+          wrapperBottom = wrapperRect.bottom;
+
+      if ( wrapperTop < winHeight && wrapperBottom > 0 ) {
+
+        $wrapper.find('> .athemes-blocks-background-image').each(function () {
+
+          var image       = this,
+              $image      = $(this),
+              imageRect   = image.getBoundingClientRect(),
+              imageHeight = imageRect.height,
+              heightDiff  = wrapperHeight - imageHeight,
+              speed       = 0.5,
+              offset      = 0;
+
+          var heightRatio  = winHeight + wrapperHeight,
+              topRatio     = (wrapperTop - winHeight) * -1,
+              outsideRatio = (((topRatio / heightRatio) - 0.5) * speed) + 0.5;
+
+          offset = ((imageHeight + wrapperHeight) * outsideRatio) - imageHeight;
+
+          $image.css('transform', 'translate3d(0, ' + offset + 'px, 0)');
+
+        });
+
+      }
+
+    });
+
+  };
+
+  $(window).bind('scroll resize load', function () {
+    botigaParallax();
+  });
+
+  $(document).ready( function() {
+    botigaParallax();
+  });
+
+})( jQuery );
