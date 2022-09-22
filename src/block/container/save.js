@@ -36,10 +36,25 @@ function save(props) {
         if( props.attributes.wrapperBackgroundImageLazyLoading ) {
         	backgroundImageAtts.loading = 'lazy';
         }
+
+    }
+
+    let showHideOn = '';
+
+    if( ! props.attributes.displayOnDesktop ) {
+        showHideOn += ' athemes-blocks-block-hide-on-desktop';
+    }
+
+    if( ! props.attributes.displayOnTablet ) {
+        showHideOn += ' athemes-blocks-block-hide-on-tablet';
+    }
+
+    if( ! props.attributes.displayOnMobile ) {
+        showHideOn += ' athemes-blocks-block-hide-on-mobile';
     }
 
     return (
-        <div id={ props.attributes.wrapperID ? props.attributes.wrapperID : `athemes-blocks-block-${props.attributes.block_id}` } className={ `athemes-blocks-block athemes-blocks-block-${props.attributes.block_id} athemes-blocks-block-container align${ props.attributes.align }` }>
+        <div id={ props.attributes.wrapperID ? props.attributes.wrapperID : `athemes-blocks-block-${props.attributes.block_id}` } className={ `athemes-blocks-block athemes-blocks-block-${props.attributes.block_id} athemes-blocks-block-container align${ props.attributes.align }${showHideOn}` }>
             <div className={ `athemes-blocks-block-container-wrapper athemes-blocks-block-container-bg-${ props.attributes.wrapperBackgroundImageType } athemes-blocks-block-container-bg-effect-${ props.attributes.wrapperBackgroundEffect }` }>
                 {
                     props.attributes.wrapperBackgroundType == 'image' && props.attributes.wrapperBackgroundImage != null && (

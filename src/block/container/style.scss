@@ -33,3 +33,21 @@
         }
     }
 }
+
+@media only screen and (min-width: 991px){
+    .athemes-blocks-block-hide-on-desktop{
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .athemes-blocks-block-hide-on-tablet{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .athemes-blocks-block-hide-on-mobile{
+        display: none;
+    }
+}

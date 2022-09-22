@@ -307,6 +307,43 @@ const edit = ( props ) => {
                                 />
                             </Button>
                         </ButtonGroup> )}
+
+                        <BaseControl 
+                            label={ __( 'Display On', 'athemes-blocks' ) }
+                        >
+                            <ButtonGroup className="athemes-blocks-button-group-control">
+                                <Button 
+                                    title={ __( 'Desktop', 'athemes-blocks' ) }
+                                    isPrimary={ props.attributes.displayOnDesktop === true }
+                                    aria-pressed={ props.attributes.displayOnDesktop === true }
+                                    onClick={ () => { setAttributes( { displayOnDesktop: ! props.attributes.displayOnDesktop } ) } }>
+                                    <Dashicon 
+                                        icon="desktop" 
+                                        style={{ fontSize: '18px', width: '18px', height: '18px' }}
+                                    />
+                                </Button>
+                                <Button 
+                                    title={ __( 'Tablet', 'athemes-blocks' ) }
+                                    isPrimary={ props.attributes.displayOnTablet === true }
+                                    aria-pressed={ props.attributes.displayOnTablet === true }
+                                    onClick={ () => { setAttributes( { displayOnTablet: ! props.attributes.displayOnTablet } ) } }>
+                                    <Dashicon 
+                                        icon="tablet" 
+                                        style={{ fontSize: '18px', width: '18px', height: '18px' }}
+                                    />
+                                </Button>
+                                <Button 
+                                    title={ __( 'Mobile', 'athemes-blocks' ) }
+                                    isPrimary={ props.attributes.displayOnMobile === true }
+                                    aria-pressed={ props.attributes.displayOnMobile === true }
+                                    onClick={ () => { setAttributes( { displayOnMobile: ! props.attributes.displayOnMobile } ) } }>
+                                    <Dashicon 
+                                        icon="smartphone"
+                                        style={{ fontSize: '18px', width: '18px', height: '18px' }}
+                                    />
+                                </Button>
+                            </ButtonGroup>
+                        </BaseControl>
                     </PanelBody>
 
                     <CustomBackgroundControl blockProps={ props } />
