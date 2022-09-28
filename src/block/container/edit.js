@@ -141,6 +141,19 @@ const edit = ( props ) => {
         }
     }
 
+    let containerWrapperAtts = '',
+        classes              = '';
+
+    classes += `athemes-blocks-block-container-wrapper athemes-blocks-block-container-bg-${ props.attributes.wrapperBackgroundImageType } athemes-blocks-block-container-bg-effect-${ props.attributes.wrapperBackgroundEffect }`;
+
+    if( props.attributes.wrapperBackgroundParallaxTransition ) {
+        classes += ' athemes-blocks-has-transition';
+    }
+
+    containerWrapperAtts = {
+        className: classes 
+    }
+
     return (
         <Fragment>
             <BlockControls>
@@ -307,6 +320,43 @@ const edit = ( props ) => {
                                 />
                             </Button>
                         </ButtonGroup> )}
+
+                        <BaseControl 
+                            label={ __( 'Display On', 'athemes-blocks' ) }
+                        >
+                            <ButtonGroup className="athemes-blocks-button-group-control">
+                                <Button 
+                                    title={ __( 'Desktop', 'athemes-blocks' ) }
+                                    isPrimary={ props.attributes.displayOnDesktop === true }
+                                    aria-pressed={ props.attributes.displayOnDesktop === true }
+                                    onClick={ () => { setAttributes( { displayOnDesktop: ! props.attributes.displayOnDesktop } ) } }>
+                                    <Dashicon 
+                                        icon="desktop" 
+                                        style={{ fontSize: '18px', width: '18px', height: '18px' }}
+                                    />
+                                </Button>
+                                <Button 
+                                    title={ __( 'Tablet', 'athemes-blocks' ) }
+                                    isPrimary={ props.attributes.displayOnTablet === true }
+                                    aria-pressed={ props.attributes.displayOnTablet === true }
+                                    onClick={ () => { setAttributes( { displayOnTablet: ! props.attributes.displayOnTablet } ) } }>
+                                    <Dashicon 
+                                        icon="tablet" 
+                                        style={{ fontSize: '18px', width: '18px', height: '18px' }}
+                                    />
+                                </Button>
+                                <Button 
+                                    title={ __( 'Mobile', 'athemes-blocks' ) }
+                                    isPrimary={ props.attributes.displayOnMobile === true }
+                                    aria-pressed={ props.attributes.displayOnMobile === true }
+                                    onClick={ () => { setAttributes( { displayOnMobile: ! props.attributes.displayOnMobile } ) } }>
+                                    <Dashicon 
+                                        icon="smartphone"
+                                        style={{ fontSize: '18px', width: '18px', height: '18px' }}
+                                    />
+                                </Button>
+                            </ButtonGroup>
+                        </BaseControl>
                     </PanelBody>
 
                     <CustomBackgroundControl blockProps={ props } />
@@ -619,7 +669,8 @@ const edit = ( props ) => {
 
             <div className={ `athemes-blocks-editor-preview-${ deviceType.toLowerCase() }` }>
                 <div id={ props.attributes.wrapperID ? props.attributes.wrapperID : `athemes-blocks-block-${props.clientId.substr( 0, 8 )}` } className={ `athemes-blocks-block athemes-blocks-block-${props.clientId.substr( 0, 8 )} athemes-blocks-block-container` }>
-                    <div className={ `athemes-blocks-block-container-wrapper athemes-blocks-block-container-bg-${ props.attributes.wrapperBackgroundImageType } athemes-blocks-block-container-bg-effect-${ props.attributes.wrapperBackgroundEffect }` }>
+                    <div { ...containerWrapperAtts }>
+                    {/* <div className={ `athemes-blocks-block-container-wrapper athemes-blocks-block-container-bg-${ props.attributes.wrapperBackgroundImageType } athemes-blocks-block-container-bg-effect-${ props.attributes.wrapperBackgroundEffect }` }> */}
                         {
                             props.attributes.wrapperBackgroundType == 'image' && props.attributes.wrapperBackgroundImage != null && (
                                 <img { ...backgroundImageAtts } />

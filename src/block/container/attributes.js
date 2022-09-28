@@ -102,5 +102,17 @@ export default {
         type: 'number',
         default: 0
     },
+    displayOnDesktop: {
+        type: 'boolean',
+        default: true
+    },
+    displayOnTablet: {
+        type: 'boolean',
+        default: true
+    },
+    displayOnMobile: {
+        type: 'boolean',
+        default: true
+    },
     ...control_atts( 'background' )
 }
