@@ -28,7 +28,13 @@
     }
     &.athemes-blocks-block-container-bg-effect-parallax {
         .athemes-blocks-background-image {
-            height: auto;
+            top: -100px;
+            height: calc( 100% + 260px);
+        }
+    }
+    &.athemes-blocks-has-transition {
+        .athemes-blocks-background-image {
+            transition: all 0.2s ease-out;
         }
     }
 }

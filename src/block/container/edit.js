@@ -141,6 +141,19 @@ const edit = ( props ) => {
         }
     }
 
+    let containerWrapperAtts = '',
+        classes              = '';
+
+    classes += `athemes-blocks-block-container-wrapper athemes-blocks-block-container-bg-${ props.attributes.wrapperBackgroundImageType } athemes-blocks-block-container-bg-effect-${ props.attributes.wrapperBackgroundEffect }`;
+
+    if( props.attributes.wrapperBackgroundParallaxTransition ) {
+        classes += ' athemes-blocks-has-transition';
+    }
+
+    containerWrapperAtts = {
+        className: classes 
+    }
+
     return (
         <Fragment>
             <BlockControls>
@@ -656,7 +669,8 @@ const edit = ( props ) => {
 
             <div className={ `athemes-blocks-editor-preview-${ deviceType.toLowerCase() }` }>
                 <div id={ props.attributes.wrapperID ? props.attributes.wrapperID : `athemes-blocks-block-${props.clientId.substr( 0, 8 )}` } className={ `athemes-blocks-block athemes-blocks-block-${props.clientId.substr( 0, 8 )} athemes-blocks-block-container` }>
-                    <div className={ `athemes-blocks-block-container-wrapper athemes-blocks-block-container-bg-${ props.attributes.wrapperBackgroundImageType } athemes-blocks-block-container-bg-effect-${ props.attributes.wrapperBackgroundEffect }` }>
+                    <div { ...containerWrapperAtts }>
+                    {/* <div className={ `athemes-blocks-block-container-wrapper athemes-blocks-block-container-bg-${ props.attributes.wrapperBackgroundImageType } athemes-blocks-block-container-bg-effect-${ props.attributes.wrapperBackgroundEffect }` }> */}
                         {
                             props.attributes.wrapperBackgroundType == 'image' && props.attributes.wrapperBackgroundImage != null && (
                                 <img { ...backgroundImageAtts } />

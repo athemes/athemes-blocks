@@ -48,6 +48,7 @@ if ( ! class_exists( 'ATBLOCKS_Css' ) ) {
                 'wrapperBackgroundImageType' => 'cover',
                 'wrapperBackgroundPosition' => 'center',
                 'wrapperBackgroundEffect' => 'scroll',
+                'wrapperBackgroundParallaxTransition' => 0,
 
                 'wrapperPaddingToggle' => true,
                 'wrapperPaddingToggleTablet' => true,

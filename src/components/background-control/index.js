@@ -198,6 +198,15 @@ function CustomBackgroundControl( props ) {
                             
                         </BaseControl>
                     )}
+                    { props.blockProps.attributes.wrapperBackgroundImage && props.blockProps.attributes.wrapperBackgroundEffect === 'parallax' && (
+                        <BaseControl>
+                            <ToggleControl
+                                label={ __( 'Parallax Transition', 'athemes-blocks' ) }
+                                checked={ props.blockProps.attributes.wrapperBackgroundParallaxTransition }
+                                onChange={ ( value ) => { setAttributes( { wrapperBackgroundParallaxTransition: value } ) } }
+                            />
+                        </BaseControl>
+                    )}
                     { props.blockProps.attributes.wrapperBackgroundImage && (
                         <BaseControl>
                             <ToggleControl

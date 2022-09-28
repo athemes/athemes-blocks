@@ -1,63 +1,52 @@
-/**
- * aThemes Blocks Parallax v2
+/*
+ * aThemes Blocks
+ * Parallax
  */
-document.addEventListener("DOMContentLoaded", function() {
 
-  var parallax = document.querySelectorAll('.athemes-blocks-block-container-bg-effect-parallax');
+'use strict';
 
-  if ( parallax.length > 0 ) {
+athemesBlocksDomReady(function () {
+    var elements = document.querySelectorAll( '.athemes-blocks-block-container-bg-cover.athemes-blocks-block-container-bg-effect-parallax .athemes-blocks-background-image' );
 
-    window.addEventListener('scroll', function() {
-      botigaParallax();
-    });
+    if( elements.length > 0 ) {
+        window.addEventListener( 'scroll', function() {
+            for( var i = 0; i < elements.length; i++ ) {
+                var el = elements[i];
+                if( isElementInViewport( el ) ) {
+                    var top = el.getBoundingClientRect().top / 10;
 
-    window.addEventListener('resize', function() {
-      botigaParallax();
-    });
-
-    window.addEventListener('load', function() {
-      botigaParallax();
-    });
-
-  }
-
-  var botigaParallax = function() {
-
-    for( var i = 0; i < parallax.length; i++ ) {
-  
-      var parallaxWrapper = parallax[i],
-          wrapperRect     = parallaxWrapper.getBoundingClientRect(),
-          wrapperHeight   = wrapperRect.height,
-          wrapperTop      = wrapperRect.top,
-          wrapperBottom   = wrapperRect.bottom,
-          winHeight       = window.innerHeight;
-
-      if ( wrapperTop < winHeight && wrapperBottom > 0 ) {
-
-        var parallaxImage = parallaxWrapper.querySelector('.athemes-blocks-background-image');
-
-        if ( ! parallaxImage ) {
-          return;
-        }
-
-        var imageRect   = parallaxImage.getBoundingClientRect(),
-            imageHeight = imageRect.height,
-            heightDiff  = wrapperHeight - imageHeight,
-            speed       = 0.5,
-            offset      = 0;
-
-        var heightRatio  = winHeight + wrapperHeight,
-            topRatio     = (wrapperTop - winHeight) * -1,
-            outsideRatio = (((topRatio / heightRatio) - 0.5) * speed) + 0.5;
-
-        offset = ((imageHeight + wrapperHeight) * outsideRatio) - imageHeight;
-
-        parallaxImage.style = 'transform: translate3d(0, ' + offset + 'px, 0);';
-
-      }
-
+                    el.style = 'transform: translate3d(0, '+ ( top ) +'px, 0);';
+                }
+            }
+        } );
     }
-
-  };
-
 });
+
+function isElementInViewport(el) {
+    var rect = el.getBoundingClientRect(),
+        elemTop = rect.top,
+        elemBottom = rect.bottom,
+        isVisible = elemTop < window.innerHeight && elemBottom >= 0;
+
+    return isVisible;
+}
+
+/**
+ * Is the DOM ready?
+ *
+ * This implementation is coming from https://gomakethings.com/a-native-javascript-equivalent-of-jquerys-ready-method/
+ *
+ * @param {Function} fn Callback function to run.
+ */
+
+function athemesBlocksDomReady(fn) {
+    if (typeof fn !== 'function') {
+      return;
+    }
+  
+    if (document.readyState === 'interactive' || document.readyState === 'complete') {
+      return fn();
+    }
+  
+    document.addEventListener('DOMContentLoaded', fn, false);
+}

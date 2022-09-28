@@ -39,6 +39,22 @@ function save(props) {
 
     }
 
+
+    // Container Wrapper Atts
+    let containerWrapperAtts = '',
+        classes              = '';
+
+    classes += `athemes-blocks-block-container-wrapper athemes-blocks-block-container-bg-${ props.attributes.wrapperBackgroundImageType } athemes-blocks-block-container-bg-effect-${ props.attributes.wrapperBackgroundEffect }`;
+
+    if( props.attributes.wrapperBackgroundParallaxTransition ) {
+        classes += ' athemes-blocks-has-transition';
+    }
+
+    containerWrapperAtts = {
+        className: classes 
+    }
+
+    // Show Hide
     let showHideOn = '';
 
     if( ! props.attributes.displayOnDesktop ) {
@@ -55,7 +71,7 @@ function save(props) {
 
     return (
         <div id={ props.attributes.wrapperID ? props.attributes.wrapperID : `athemes-blocks-block-${props.attributes.block_id}` } className={ `athemes-blocks-block athemes-blocks-block-${props.attributes.block_id} athemes-blocks-block-container align${ props.attributes.align }${showHideOn}` }>
-            <div className={ `athemes-blocks-block-container-wrapper athemes-blocks-block-container-bg-${ props.attributes.wrapperBackgroundImageType } athemes-blocks-block-container-bg-effect-${ props.attributes.wrapperBackgroundEffect }` }>
+            <div { ...containerWrapperAtts }>
                 {
                     props.attributes.wrapperBackgroundType == 'image' && props.attributes.wrapperBackgroundImage != null && (
                         <img { ...backgroundImageAtts } />

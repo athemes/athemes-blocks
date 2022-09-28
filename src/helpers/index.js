@@ -329,6 +329,10 @@ export function control_atts( type ) {
                 wrapperBackgroundEffect: {
                     type: 'string',
                     default: 'scroll'
+                },
+                wrapperBackgroundParallaxTransition: {
+                    type: 'number',
+                    default: 0
                 }
             }
             break;
