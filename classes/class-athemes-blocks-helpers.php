@@ -119,7 +119,7 @@ if ( ! class_exists( 'ATBLOCKS_Helpers' ) ) {
          * 
          */
         public static function is_ie() {
-            if( preg_match('~MSIE|Internet Explorer~i', $_SERVER['HTTP_USER_AGENT'] ) || preg_match( '~Trident/7.0(; Touch)?; rv:11.0~', $_SERVER['HTTP_USER_AGENT'] ) ) {
+            if( isset( $_SERVER['HTTP_USER_AGENT'] ) && ( preg_match('~MSIE|Internet Explorer~i', $_SERVER['HTTP_USER_AGENT'] ) || preg_match( '~Trident/7.0(; Touch)?; rv:11.0~', $_SERVER['HTTP_USER_AGENT'] ) ) ) {
                 return true;
             }
 
