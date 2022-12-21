@@ -182,7 +182,7 @@ if ( ! class_exists( 'ATBLOCKS_Css' ) ) {
             }
             
             if( $atts['wrapperBackgroundType'] == 'image' && $atts['wrapperBackgroundImage'] != null ) {
-                $desktopSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-background-image'] = array(
+                $desktopSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-background-image, .athemes-blocks-block-container-wrapper > picture .athemes-blocks-background-image'] = array(
                     'object-fit' => $atts['wrapperBackgroundImageType'],
                     'object-position' => $atts['wrapperBackgroundPosition'],
                     'font-family' => "'object-fit: cover; object-position: bottom;';" // IE support

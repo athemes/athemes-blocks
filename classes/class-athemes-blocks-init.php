@@ -203,7 +203,7 @@ if ( ! class_exists( 'ATBLOCKS_Init' ) ) {
                 }
 
                 // Some themes/plugins might disable the enqueue from this style. E.g the filter 'should_load_separate_core_block_assets'.
-                // In this case we need a fallback to add the style within the wp_head hook. 
+                // In this case we need to check if the style is already enqueued and if not, enqueue it.
                 if( ! wp_style_is( 'athemes-blocks-style' ) ) {
                     wp_enqueue_style( 'athemes-blocks-style' );
                 }
