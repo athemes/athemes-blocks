@@ -43,7 +43,7 @@ Yes, It can be used with any properly developed WordPress theme.
 
 You can report bugs on our [support forum](https://wordpress.org/support/plugin/athemes-blocks/) or send us an email using the [contact form on our website](https://athemes.com/contact/).
 
-[DOCUMENTATION](https://docs.athemes.com/category/331-athemes-blocks) || [SUPPORT](https://wordpress.org/support/plugin/athemes-blocks/)
+[DOCUMENTATION](https://docs.athemes.com/documentation/other-themes/athemes-blocks/) || [SUPPORT](https://wordpress.org/support/plugin/athemes-blocks/)
 
 = Want to know all the latest news and be part of the aThemes community? =
 
