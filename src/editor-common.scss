@@ -230,12 +230,18 @@
     position: relative;
     .components-base-control__label {
         > svg {
-            position: absolute;
-            top: 5px;
+            position: relative;
+            top: 2px;
         }
     }
     .components-range-control__wrapper {
         margin-left: 35px;
+    }
+    .components-base-control__field {
+        display: flex;
+        .components-range-control__wrapper {
+            margin-left: 15px;
+        }
     }
 }
 
@@ -300,6 +306,9 @@
     position: absolute;
     top: 1px;
     right: 0;
+    .components-button {
+        max-width: 20px;
+    }
 }
 
 .athemes-blocks-unit-control-group {
@@ -339,6 +348,7 @@
     top: 7px;
     right: -18px;
     box-shadow: none !important;
+    max-width: 20px;
 }
 
 // Responsive Preview
