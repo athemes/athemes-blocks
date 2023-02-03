@@ -1,7 +1,7 @@
 === aThemes Blocks ===
 Tags: athemes, blocks, gutenberg, sites
 Requires at least: 5.5
-Tested up to: 6.0
+Tested up to: 6.1.1
 Requires PHP: 5.6
 Stable tag: trunk
 Contributors: aThemes
