@@ -218,7 +218,8 @@ if ( ! class_exists( 'ATBLOCKS_Init' ) ) {
          */
         public function generate_athemes_blocks_css( $block ) {
             $athemes_blocks = apply_filters( 'athemes_blocks_generate_css_for', array(
-                'athemes/athemes-blocks-block-container'
+                'athemes/athemes-blocks-block-container',
+                'athemes/athemes-blocks-block-google-map'
             ) );
 
             if( in_array( $block['blockName'], $athemes_blocks ) ) {
@@ -226,6 +227,11 @@ if ( ! class_exists( 'ATBLOCKS_Init' ) ) {
                 // Container Block
                 if( $block['blockName'] == 'athemes/athemes-blocks-block-container' ) {
                     $this->css .= ATBLOCKS_Css_Output::get_container_block_css( $block['attrs'], 'athemes-blocks-block-' . $block['attrs']['block_id'] );
+                }
+
+                // Google Map Block
+                if( $block['blockName'] == 'athemes/athemes-blocks-block-google-map' ) {
+                    $this->css .= ATBLOCKS_Css_Output::get_google_map_block_css( $block['attrs'], 'athemes-blocks-block-' . $block['attrs']['block_id'] );
                 }
 
             }

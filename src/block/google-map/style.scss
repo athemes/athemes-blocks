@@ -1,0 +1,22 @@
+/**
+ * aThemes - Google Map Block (editor)
+ * Styles for back and front end
+ *
+ */
+.athemes-blocks-block-google-map{
+    margin-bottom: 25px;
+
+    iframe{
+        display: block;
+        width: 100%;
+    }
+
+    &.aligncenter{
+        text-align: center;
+
+        iframe{
+            display: inline-block;
+            vertical-align: top;
+        }
+    }
+}
