@@ -1,5 +1,5 @@
 /**
- * aThemes - Google Map Block (edit)
+ * aThemes - Google Maps Block (edit)
  */
 
 // WordPress dependencies
@@ -42,7 +42,7 @@ const edit = ( props ) => {
 
     const { iframe, deviceType } = attributes;
 
-    const blockClassName = `athemes-blocks-block athemes-blocks-block-${props.clientId.substr( 0, 8 )} athemes-blocks-block-google-map`;
+    const blockClassName = `athemes-blocks-block athemes-blocks-block-${props.clientId.substr( 0, 8 )} athemes-blocks-block-google-maps`;
 
     useEffect(() => {
       setAttributes({ block_id: props.clientId.substr( 0, 8 ) });

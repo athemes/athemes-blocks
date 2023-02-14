@@ -1,5 +1,5 @@
 /**
- * aThemes - Google Map Block (editor)
+ * aThemes - Google Maps Block (editor)
  * Styles for back end only
  *
  */
@@ -9,7 +9,7 @@
 // The purpose here is not need to "eject" the guten-block
 @import "../../editor-common";
 
-.athemes-blocks-block-google-map{
+.athemes-blocks-block-google-maps{
 
     &:empty{
         min-height: 250px;
@@ -26,7 +26,7 @@
 
 .wp-block[data-align="center"]{
 
-    .athemes-blocks-block-google-map{
+    .athemes-blocks-block-google-maps{
         text-align: center;
 
         iframe{

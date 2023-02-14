@@ -293,10 +293,10 @@ if ( ! class_exists( 'ATBLOCKS_Css' ) ) {
         }
 
         /**
-         * Google Map Block CSS
+         * Google Maps Block CSS
          * 
          */
-        public static function get_google_map_block_css( $attributes, $id ) {
+        public static function get_google_maps_block_css( $attributes, $id ) {
 
             $defaults = array(
                 'contentWidthSize'           => '100',

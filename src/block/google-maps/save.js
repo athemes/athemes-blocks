@@ -1,5 +1,5 @@
 /**
- * aThemes - Google Map Block (save)
+ * aThemes - Google Maps Block (save)
  */
 
 // WordPress dependencies
@@ -17,7 +17,7 @@ const save = ( props ) => {
 
     const { block_id, iframe } = attributes;
 
-    const blockClassName = `athemes-blocks-block athemes-blocks-block-${block_id.substr( 0, 8 )} athemes-blocks-block-google-map`;
+    const blockClassName = `athemes-blocks-block athemes-blocks-block-${block_id.substr( 0, 8 )} athemes-blocks-block-google-maps`;
 
     const blockProps = useBlockProps.save({className: blockClassName});
 

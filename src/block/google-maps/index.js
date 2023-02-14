@@ -1,5 +1,5 @@
 /**
- * aThemes - Google Map Block
+ * aThemes - Google Maps Block
  */
 
 // WordPress dependencies
@@ -24,18 +24,18 @@ import save from './save.js';
 import attributes from './attributes.js';
 
 /**
- * Register - aThemes Google Map Block
+ * Register - aThemes Google Maps Block
  */
-registerBlockType( 'athemes/athemes-blocks-block-google-map', {
+registerBlockType( 'athemes/athemes-blocks-block-google-maps', {
   apiVersion: 2,
-	title: __( 'Google Map Block', 'athemes-blocks' ),
-	icon: athemes_icons( 'google-map-block' ),
-	description: __( 'A simple google map block.', 'athemes-blocks' ),
+	title: __( 'Google Maps Block', 'athemes-blocks' ),
+	icon: athemes_icons( 'google-maps-block' ),
+	description: __( 'A simple Google Maps block.', 'athemes-blocks' ),
 	category: 'common',
 	keywords: [
 		__( 'athemes', 'athemes-blocks' ),
 		__( 'google', 'athemes-blocks' ),
-		__( 'map', 'athemes-blocks' ),
+		__( 'maps', 'athemes-blocks' ),
 	],
   supports: {
     align: true,

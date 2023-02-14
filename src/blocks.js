@@ -6,4 +6,4 @@
 
 // Blocks
 import './block/container';
-import './block/google-map';
+import './block/google-maps';

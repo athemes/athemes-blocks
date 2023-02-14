@@ -1,5 +1,5 @@
 /**
- * aThemes - Google Map Block (editor style)
+ * aThemes - Google Maps Block (editor style)
  * Render the block CSS in the editor
  *  
  */

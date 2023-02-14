@@ -1,5 +1,5 @@
 /**
- * aThemes - Google Map Block (attributes)
+ * aThemes - Google Maps Block (attributes)
  */
 
 // Plugin dependencies
