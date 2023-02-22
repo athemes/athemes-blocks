@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       aThemes Blocks
  * Description:       aThemes Blocks is a Gutenberg plugin extending the WordPress editor with awesome blocks.
- * Version:           1.0.9
+ * Version:           1.0.10
  * Author:            aThemes
  * Author URI:        https://athemes.com
  * License:           GPL-2.0+

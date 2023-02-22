@@ -4,6 +4,7 @@
 
 // WordPress dependencies
 import {
+    sprintf,
     __
 } from '@wordpress/i18n';
 
@@ -13,6 +14,7 @@ import {
 } from '@wordpress/block-editor';
 
 import {
+    BaseControl,
     PanelBody,
     TextControl,
     RangeControl,
@@ -28,11 +30,11 @@ import {
 // Plugin dependencies
 import style from './style.js';
 
-import { 
+import {
     ResponsiveControls
 } from '../../components/';
 
-const edit = ( props ) => {
+const edit = (props) => {
 
     const blockProps = useBlockProps();
 
@@ -42,112 +44,118 @@ const edit = ( props ) => {
 
     const { iframe, deviceType } = attributes;
 
-    const blockClassName = `athemes-blocks-block athemes-blocks-block-${props.clientId.substr( 0, 8 )} athemes-blocks-block-google-maps`;
+    const blockClassName = `athemes-blocks-block athemes-blocks-block-${props.clientId.substr(0, 8)} athemes-blocks-block-google-maps`;
 
     useEffect(() => {
-      setAttributes({ block_id: props.clientId.substr( 0, 8 ) });
+        setAttributes({ block_id: props.clientId.substr(0, 8) });
     });
 
-    let css = style( props, deviceType ),
+    let css = style(props, deviceType),
         appendCSS = '';
 
-    if( deviceType == 'Desktop' ) {
-      appendCSS = css[0];
-    } else if( deviceType == 'Tablet' ) {
-      appendCSS = css[1];
-    } else if( deviceType == 'Mobile' ) {
-      appendCSS = css[2];
+    if (deviceType == 'Desktop') {
+        appendCSS = css[0];
+    } else if (deviceType == 'Tablet') {
+        appendCSS = css[1];
+    } else if (deviceType == 'Mobile') {
+        appendCSS = css[2];
     }
 
-    if( document.querySelector(`#athemes-blocks-block-${ deviceType.toLowerCase() }-${ props.clientId.substr( 0, 8 ) }`) == null ) {
-      const stylesheet = document.createElement( "style" )
-      stylesheet.setAttribute( "id", `athemes-blocks-block-${ deviceType.toLowerCase() }-${ props.clientId.substr( 0, 8 ) }` )
-      document.head.appendChild( stylesheet )
-      stylesheet.innerHTML = appendCSS;
+    if (document.querySelector(`#athemes-blocks-block-${deviceType.toLowerCase()}-${props.clientId.substr(0, 8)}`) == null) {
+        const stylesheet = document.createElement("style")
+        stylesheet.setAttribute("id", `athemes-blocks-block-${deviceType.toLowerCase()}-${props.clientId.substr(0, 8)}`)
+        document.head.appendChild(stylesheet)
+        stylesheet.innerHTML = appendCSS;
     } else {
-      document.querySelector(`#athemes-blocks-block-${ deviceType.toLowerCase() }-${ props.clientId.substr( 0, 8 ) }`).innerHTML = appendCSS;
+        document.querySelector(`#athemes-blocks-block-${deviceType.toLowerCase()}-${props.clientId.substr(0, 8)}`).innerHTML = appendCSS;
     }
+
+    const helplink = <a href="https://docs.athemes.com/article/google-maps-block/" target="_blank">{ __( 'here', 'athemes-blocks' ) }</a>;
 
     return (
-        <div { ...blockProps }>
+        <div {...blockProps}>
             <InspectorControls>
-                <PanelBody title={ __( 'Settings', 'athemes-blocks' ) }>
-                    <TextareaControl
-                        label={ __( 'Iframe Embed Code', 'athemes-blocks' ) }
-                        value={ iframe }
-                        rows="7"
-                        onChange={ (value) => { setAttributes({ iframe: value }) } }
+                <PanelBody title={__('Settings', 'athemes-blocks')}>
+                    <BaseControl 
+                        className="athemes-blocks-base-control">
+                        <TextareaControl
+                            label={__('Iframe Embed Code', 'athemes-blocks')}
+                            value={iframe}
+                            rows="7"
+                            onChange={(value) => { setAttributes({ iframe: value }) }}
+                        />
+                        <small style={ { display: 'block', marginTop: '-10px' } }>{ __( 'The Google Maps embed iframe code. Learn how to get the code', 'athemes-blocks' ) + ' ' }{helplink}</small>
+                    </BaseControl>
+                    <ResponsiveControls
+                        blockProps={props}
+                        unitsFor="contentWidthSize"
+                        units={['%', 'px']}
                     />
-                    <ResponsiveControls 
-                        blockProps={ props } 
-                        unitsFor="contentWidthSize" 
-                        units={ ['%', 'px'] }
-                    />
-                    { "Desktop" === deviceType && (
+                    {"Desktop" === deviceType && (
                         <RangeControl
-                            label={ __( 'Width', 'athemes-blocks' ) }
-                            value={ props.attributes.contentWidthSize }
-                            onChange={ ( value ) => setAttributes( { contentWidthSize: value } ) }
-                            min={ 1 }
-                            max={ props.attributes.contentWidthSizeUnit === '%' ? 100 : 2000 }
+                            label={__('Width', 'athemes-blocks')}
+                            value={props.attributes.contentWidthSize}
+                            onChange={(value) => setAttributes({ contentWidthSize: value })}
+                            min={1}
+                            max={props.attributes.contentWidthSizeUnit === '%' ? 100 : 2000}
                         />
                     )}
-                    { "Tablet" === deviceType && (
+                    {"Tablet" === deviceType && (
                         <RangeControl
-                            label={ __( 'Width', 'athemes-blocks' ) }
-                            value={ props.attributes.contentWidthSizeTablet }
-                            onChange={ ( value ) => setAttributes( { contentWidthSizeTablet: value } ) }
-                            min={ 1 }
-                            max={ props.attributes.contentWidthSizeTabletUnit === '%' ? 100 : 2000 }
+                            label={__('Width', 'athemes-blocks')}
+                            value={props.attributes.contentWidthSizeTablet}
+                            onChange={(value) => setAttributes({ contentWidthSizeTablet: value })}
+                            min={1}
+                            max={props.attributes.contentWidthSizeTabletUnit === '%' ? 100 : 2000}
                         />
                     )}
-                    { "Mobile" === deviceType && (
+                    {"Mobile" === deviceType && (
                         <RangeControl
-                            label={ __( 'Width', 'athemes-blocks' ) }
-                            value={ props.attributes.contentWidthSizeMobile }
-                            onChange={ ( value ) => setAttributes( { contentWidthSizeMobile: value } ) }
-                            min={ 1 }
-                            max={ props.attributes.contentWidthSizeMobileUnit === '%' ? 100 : 2000 }
+                            label={__('Width', 'athemes-blocks')}
+                            value={props.attributes.contentWidthSizeMobile}
+                            onChange={(value) => setAttributes({ contentWidthSizeMobile: value })}
+                            min={1}
+                            max={props.attributes.contentWidthSizeMobileUnit === '%' ? 100 : 2000}
                         />
                     )}
 
-                    <ResponsiveControls 
-                        blockProps={ props } 
-                        unitsFor="contentHeightSize" 
-                        units={ ['px'] }
+                    <ResponsiveControls
+                        blockProps={props}
+                        unitsFor="contentHeightSize"
+                        units={['px']}
                     />
-                    { "Desktop" === deviceType && (
+                    {"Desktop" === deviceType && (
                         <RangeControl
-                            label={ __( 'Height', 'athemes-blocks' ) }
-                            value={ props.attributes.contentHeightSize }
-                            onChange={ ( value ) => setAttributes( { contentHeightSize: value } ) }
-                            min={ 1 }
-                            max={ 2000 }
+                            label={__('Height', 'athemes-blocks')}
+                            value={props.attributes.contentHeightSize}
+                            onChange={(value) => setAttributes({ contentHeightSize: value })}
+                            min={1}
+                            max={2000}
                         />
                     )}
-                    { "Tablet" === deviceType && (
+                    {"Tablet" === deviceType && (
                         <RangeControl
-                            label={ __( 'Height', 'athemes-blocks' ) }
-                            value={ props.attributes.contentHeightSizeTablet }
-                            onChange={ ( value ) => setAttributes( { contentHeightSizeTablet: value } ) }
-                            min={ 1 }
-                            max={ 2000 }
+                            label={__('Height', 'athemes-blocks')}
+                            value={props.attributes.contentHeightSizeTablet}
+                            onChange={(value) => setAttributes({ contentHeightSizeTablet: value })}
+                            min={1}
+                            max={2000}
                         />
                     )}
-                    { "Mobile" === deviceType && (
+                    {"Mobile" === deviceType && (
                         <RangeControl
-                            label={ __( 'Height', 'athemes-blocks' ) }
-                            value={ props.attributes.contentHeightSizeMobile }
-                            onChange={ ( value ) => setAttributes( { contentHeightSizeMobile: value } ) }
-                            min={ 1 }
-                            max={ 2000 }
+                            label={__('Height', 'athemes-blocks')}
+                            value={props.attributes.contentHeightSizeMobile}
+                            onChange={(value) => setAttributes({ contentHeightSizeMobile: value })}
+                            min={1}
+                            max={2000}
                         />
                     )}
 
                 </PanelBody>
             </InspectorControls>
-            <div className={ `athemes-blocks-editor athemes-blocks-editor-preview-${ deviceType.toLowerCase() }` }>
-                <RawHTML className={ blockClassName }>{ iframe }</RawHTML>
+            <div className={`athemes-blocks-editor athemes-blocks-editor-preview-${deviceType.toLowerCase()}`}>
+                <RawHTML className={blockClassName}>{iframe}</RawHTML>
             </div>
         </div>
     );
