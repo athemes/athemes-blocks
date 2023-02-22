@@ -1,0 +1,37 @@
+/**
+ * aThemes - Google Maps Block (editor)
+ * Styles for back end only
+ *
+ */
+
+// Import the common styles for the editor
+// Do not import this file in others blocks
+// The purpose here is not need to "eject" the guten-block
+@import "../../editor-common";
+
+.athemes-blocks-block-google-maps{
+
+    &:empty{
+        min-height: 250px;
+        background-color: #eee;
+    }
+
+    iframe{
+        display: block;
+        width: 100%;
+        pointer-events: none;
+        user-select: none;
+    }
+}
+
+.wp-block[data-align="center"]{
+
+    .athemes-blocks-block-google-maps{
+        text-align: center;
+
+        iframe{
+            display: inline-block;
+            vertical-align: top;
+        }
+    }
+}

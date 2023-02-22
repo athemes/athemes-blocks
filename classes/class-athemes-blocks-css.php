@@ -291,6 +291,73 @@ if ( ! class_exists( 'ATBLOCKS_Css' ) ) {
 
             return $css;
         }
+
+        /**
+         * Google Maps Block CSS
+         * 
+         */
+        public static function get_google_maps_block_css( $attributes, $id ) {
+
+            $defaults = array(
+                'contentWidthSize'           => '100',
+                'contentWidthSizeUnit'       => '%',
+                'contentWidthSizeTablet'     => '100',
+                'contentWidthSizeTabletUnit' => '%',
+                'contentWidthSizeMobile'     => '100',
+                'contentWidthSizeMobileUnit' => '%',
+                'contentHeightSize'           => '500',
+                'contentHeightSizeUnit'       => 'px',
+                'contentHeightSizeTablet'     => '500',
+                'contentHeightSizeTabletUnit' => 'px',
+                'contentHeightSizeMobile'     => '500',
+                'contentHeightSizeMobileUnit' => 'px',
+            );
+
+            $atts = array_merge( $defaults, $attributes );
+
+            $css = '';
+
+            $desktopSelectors = array();
+            $tabletSelectors  = array();
+            $mobileSelectors  = array();
+
+            // Iframe Width and Height
+            $desktopSelectors['iframe'] = array(
+                'width'  => $atts['contentWidthSize'] . $atts['contentWidthSizeUnit'],
+                'height' => $atts['contentHeightSize'] . $atts['contentHeightSizeUnit']
+            );
+            $tabletSelectors['iframe'] = array(
+                'width' => ATBLOCKS_Helpers::get_no_repeated_css_value(
+                    $desktopSelectors['iframe']['width'],
+                    $atts['contentWidthSizeTablet'] . $atts['contentWidthSizeTabletUnit']
+                ),
+                'height' => ATBLOCKS_Helpers::get_no_repeated_css_value(
+                    $desktopSelectors['iframe']['height'],
+                    $atts['contentHeightSizeTablet'] . $atts['contentHeightSizeTabletUnit']
+                )
+            );
+            $mobileSelectors['iframe'] = array(
+                'width' => ATBLOCKS_Helpers::get_no_repeated_css_value(
+                    $desktopSelectors['iframe']['width'],
+                    $tabletSelectors['iframe']['width'],
+                    $atts['contentWidthSizeMobile'] . $atts['contentWidthSizeMobileUnit']
+                ),
+                'height' => ATBLOCKS_Helpers::get_no_repeated_css_value(
+                    $desktopSelectors['iframe']['height'],
+                    $tabletSelectors['iframe']['height'],
+                    $atts['contentHeightSizeMobile'] . $atts['contentHeightSizeMobileUnit']
+                )
+            );
+
+            // Mount CSS to render
+            $css .= ATBLOCKS_Helpers::mount_css( $desktopSelectors, $id, false );
+            $css .= ATBLOCKS_Helpers::mount_css( $tabletSelectors, $id, apply_filters( 'athemes_blocks_css_tablet_breakpoint', 991 ) );
+            $css .= ATBLOCKS_Helpers::mount_css( $mobileSelectors, $id, apply_filters( 'athemes_blocks_css_mobile_breakpoint', 719 ) );
+
+            return $css;
+
+        }
+
     }
 
 }

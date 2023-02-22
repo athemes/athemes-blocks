@@ -4,5 +4,6 @@
  * 
  */
 
-// Container Block
+// Blocks
 import './block/container';
+import './block/google-maps';
