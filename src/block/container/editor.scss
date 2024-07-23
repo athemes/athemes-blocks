@@ -21,6 +21,7 @@ div[data-type="athemes/athemes-blocks-block-container"] {
 // Style button to append inner blocks
 .athemes-blocks-block-container-wrapper {
     .athemes-blocks-block-container-wrapper-content {
+        box-sizing: border-box;
         .block-editor-block-list__block,
         .block-list-appender {
             max-width: none !important;

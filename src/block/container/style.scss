@@ -21,6 +21,8 @@
         padding-right: 15px;
         padding-left: 15px;
         z-index: 1;
+        box-sizing: border-box;
+
         > p:last-child,
         > ul:last-child {
             margin-bottom: 0;
