@@ -29,7 +29,7 @@ if ( ! version_compare( PHP_VERSION, '5.6', '>=' ) ) {
 }
 
 /**
- * Uncompatible PHP version notice
+ * Uncompatible PHP version notice.
  * 
  */
 function athemes_blocks_uncompatible_php_version() {
