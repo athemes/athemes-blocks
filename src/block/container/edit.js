@@ -154,6 +154,8 @@ const edit = ( props ) => {
         className: classes 
     }
 
+    console.log(props);
+
     return (
         <Fragment>
             <BlockControls>
@@ -668,7 +670,7 @@ const edit = ( props ) => {
             </InspectorControls>
 
             <div className={ `athemes-blocks-editor-preview-${ deviceType.toLowerCase() }` }>
-                <div id={ props.attributes.wrapperID ? props.attributes.wrapperID : `athemes-blocks-block-${props.clientId.substr( 0, 8 )}` } className={ `athemes-blocks-block athemes-blocks-block-${props.clientId.substr( 0, 8 )} athemes-blocks-block-container` }>
+                <div id={ props.attributes.wrapperID ? props.attributes.wrapperID : `athemes-blocks-block-${props.clientId.substr( 0, 8 )}` } className={ `athemes-blocks-block athemes-blocks-block-${props.clientId.substr( 0, 8 )} athemes-blocks-block-container ${ props.attributes.className }` }>
                     <div { ...containerWrapperAtts }>
                     {/* <div className={ `athemes-blocks-block-container-wrapper athemes-blocks-block-container-bg-${ props.attributes.wrapperBackgroundImageType } athemes-blocks-block-container-bg-effect-${ props.attributes.wrapperBackgroundEffect }` }> */}
                         {
