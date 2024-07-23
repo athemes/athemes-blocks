@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'ATBLOCKS_FILE',  __FILE__ );
 
-// Plugin Loader
+// Plugin Loader.
 if ( ! version_compare( PHP_VERSION, '5.6', '>=' ) ) {
 	add_action( 'admin_notices', 'athemes_blocks_uncompatible_php_version' );
 } elseif ( ! version_compare( get_bloginfo( 'version' ), '5.5', '>=' ) ) {
