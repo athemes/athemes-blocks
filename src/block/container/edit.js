@@ -74,6 +74,9 @@ const edit = ( props ) => {
 
     useEffect(() => {
 
+        // Reset some attributes.
+        setAttributes( { tabSelected: 'style' } );
+    
         // Block ID
         setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
 
@@ -93,7 +96,7 @@ const edit = ( props ) => {
             }, 1500);
         }
 
-    });
+    }, []);
 
     let css       = style( props, deviceType ),
         appendCSS = '';
@@ -668,9 +671,8 @@ const edit = ( props ) => {
             </InspectorControls>
 
             <div className={ `athemes-blocks-editor-preview-${ deviceType.toLowerCase() }` }>
-                <div id={ props.attributes.wrapperID ? props.attributes.wrapperID : `athemes-blocks-block-${props.clientId.substr( 0, 8 )}` } className={ `athemes-blocks-block athemes-blocks-block-${props.clientId.substr( 0, 8 )} athemes-blocks-block-container` }>
+                <div id={ props.attributes.wrapperID ? props.attributes.wrapperID : `athemes-blocks-block-${props.clientId.substr( 0, 8 )}` } className={ `athemes-blocks-block athemes-blocks-block-${props.clientId.substr( 0, 8 )} athemes-blocks-block-container ${ props.attributes.className ? props.attributes.className : '' }` }>
                     <div { ...containerWrapperAtts }>
-                    {/* <div className={ `athemes-blocks-block-container-wrapper athemes-blocks-block-container-bg-${ props.attributes.wrapperBackgroundImageType } athemes-blocks-block-container-bg-effect-${ props.attributes.wrapperBackgroundEffect }` }> */}
                         {
                             props.attributes.wrapperBackgroundType == 'image' && props.attributes.wrapperBackgroundImage != null && (
                                 <img { ...backgroundImageAtts } />

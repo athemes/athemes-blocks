@@ -22,6 +22,7 @@ div[data-type="athemes/athemes-blocks-block-container"] {
 .athemes-blocks-block-container-wrapper {
     .athemes-blocks-block-container-wrapper-content {
         box-sizing: border-box;
+
         .block-editor-block-list__block,
         .block-list-appender {
             max-width: none !important;
@@ -46,6 +47,15 @@ div[data-type="athemes/athemes-blocks-block-container"] {
                     path {
                         fill: #FFF;
                     }
+                }
+            }
+        }
+
+        > .block-editor-inner-blocks {
+            > .block-editor-block-list__layout {
+                > p:nth-last-child(2),
+                > ul:nth-last-child(2) {
+                    margin-bottom: 0;
                 }
             }
         }

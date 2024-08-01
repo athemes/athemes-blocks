@@ -364,6 +364,9 @@ div[data-type="athemes/athemes-blocks-block-container"] {
       .athemes-blocks-block-container-wrapper .athemes-blocks-block-container-wrapper-content .wp-block + .block-list-appender .block-editor-button-block-appender > svg path,
       .athemes-blocks-block-container-wrapper .athemes-blocks-block-container-wrapper-content #elementor-editor + .block-list-appender .block-editor-button-block-appender > svg path {
         fill: #FFF; }
+  .athemes-blocks-block-container-wrapper .athemes-blocks-block-container-wrapper-content > .block-editor-inner-blocks > .block-editor-block-list__layout > p:nth-last-child(2),
+  .athemes-blocks-block-container-wrapper .athemes-blocks-block-container-wrapper-content > .block-editor-inner-blocks > .block-editor-block-list__layout > ul:nth-last-child(2) {
+    margin-bottom: 0; }
   .athemes-blocks-block-container-wrapper .athemes-blocks-block-container-wrapper-content:hover .wp-block + .block-list-appender .block-editor-button-block-appender,
   .athemes-blocks-block-container-wrapper .athemes-blocks-block-container-wrapper-content:hover #elementor-editor + .block-list-appender .block-editor-button-block-appender {
     opacity: 1; }
