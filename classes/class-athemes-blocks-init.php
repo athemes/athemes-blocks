@@ -184,7 +184,7 @@ if ( ! class_exists( 'ATBLOCKS_Init' ) ) {
          * 
          */
         public function append_blocks_internal_style($block_content, $block){
-            if ( $block['blockName'] !== 'athemes/athemes-blocks-block-container' ) {
+            if ( $block['blockName'] !== 'athemes/athemes-blocks-block-container' && $block['blockName'] !== 'athemes/athemes-blocks-block-google-maps' ) {
                 return $block_content;
             }
 
