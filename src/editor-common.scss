@@ -415,6 +415,10 @@
 
 // Change color of default GB controls
 .athemes-blocks-inspector-tabs-content-wrapper {
+    .components-button,
+    .components-button.is-pressed:hover:not(:disabled) {
+        background-color: transparent;
+    }
     .components-range-control__track,
     .components-button.is-primary {
         background: #335EEA;

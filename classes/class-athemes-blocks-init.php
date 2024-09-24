@@ -21,6 +21,12 @@ if ( ! class_exists( 'ATBLOCKS_Init' ) ) {
             
             // Enqueue scripts
             add_action( 'enqueue_block_assets', array( $this, 'athemes_blocks_enqueue_scripts' ) );
+
+            add_action( 'enqueue_block_assets', function() {
+                wp_enqueue_style('custom-block-styles', get_template_directory_uri() . '/css/placeholder.css');
+            } );
+
+            add_action( 'render_block', array( $this, 'append_blocks_internal_style' ), 10, 2 );
         }
 
         public function athemes_blocks_assets() {
@@ -162,54 +168,33 @@ if ( ! class_exists( 'ATBLOCKS_Init' ) ) {
          * 
          */
         public function append_frontend_css() {
-            if( ! is_admin() ) {
-                global $post;
-                
-                if( has_blocks( $post ) ) {
-                    $post_blocks = parse_blocks( $post->post_content );
-
-                    foreach( $post_blocks as $block ) {
-                        
-                        $this->generate_athemes_blocks_css( $block );
-
-                        // Blocks inside Inner Blocks
-                        if( isset( $block['innerBlocks'] ) && count( $block['innerBlocks'] ) > 0 ) {
-                            $this->search_inner_blocks_for_athemes_blocks( $block['innerBlocks'] );
-                        }
-                    }
-                }
-
-                // Detect widgets with athemes blocks
-                $block_widgets = get_option( 'widget_block' );
-                if( $block_widgets ) {
-                    foreach( $block_widgets as $block_widget ) {
-                        
-                        if( isset($block_widget['content']) && strpos( $block_widget['content'], 'wp:athemes/' ) !== FALSE ) {
-                            if( has_blocks( $block_widget['content'] ) ) {
-                                $widget_blocks = parse_blocks( $block_widget['content'] );
-            
-                                foreach( $widget_blocks as $block ) {
-                                    
-                                    $this->generate_athemes_blocks_css( $block );
-            
-                                    // Blocks inside Inner Blocks
-                                    if( isset( $block['innerBlocks'] ) && count( $block['innerBlocks'] ) > 0 ) {
-                                        $this->search_inner_blocks_for_athemes_blocks( $block['innerBlocks'] );
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                // Some themes/plugins might disable the enqueue from this style. E.g the filter 'should_load_separate_core_block_assets'.
-                // In this case we need to check if the style is already enqueued and if not, enqueue it.
-                if( ! wp_style_is( 'athemes-blocks-style' ) ) {
-                    wp_enqueue_style( 'athemes-blocks-style' );
-                }
-
-                wp_add_inline_style( 'athemes-blocks-style', $this->css );
+            if( is_admin() ) {
+                return;
             }
+                
+            // Some themes/plugins might disable the enqueue from this style. E.g the filter 'should_load_separate_core_block_assets'.
+            // In this case we need to check if the style is already enqueued and if not, enqueue it.
+            if( ! wp_style_is( 'athemes-blocks-style' ) ) {
+                wp_enqueue_style( 'athemes-blocks-style' );
+            }
+        }
+
+        /**
+         * Append internal style for each block.
+         * 
+         */
+        public function append_blocks_internal_style($block_content, $block){
+            if ( $block['blockName'] !== 'athemes/athemes-blocks-block-container' && $block['blockName'] !== 'athemes/athemes-blocks-block-google-maps' ) {
+                return $block_content;
+            }
+
+            $css = $this->generate_athemes_blocks_css( $block );
+
+            if ( ! defined( 'REST_REQUEST' ) ) {
+                echo '<style>' . wp_strip_all_tags( $css ) . '</style>';
+            }
+
+            return $block_content;
         }
 
         /**
@@ -217,6 +202,8 @@ if ( ! class_exists( 'ATBLOCKS_Init' ) ) {
          * 
          */
         public function generate_athemes_blocks_css( $block ) {
+            $css = '';
+
             $athemes_blocks = apply_filters( 'athemes_blocks_generate_css_for', array(
                 'athemes/athemes-blocks-block-container',
                 'athemes/athemes-blocks-block-google-maps'
@@ -226,15 +213,19 @@ if ( ! class_exists( 'ATBLOCKS_Init' ) ) {
 
                 // Container Block
                 if( $block['blockName'] == 'athemes/athemes-blocks-block-container' ) {
-                    $this->css .= ATBLOCKS_Css_Output::get_container_block_css( $block['attrs'], 'athemes-blocks-block-' . $block['attrs']['block_id'] );
+                    $css .= ATBLOCKS_Css_Output::get_container_block_css( $block['attrs'], 'athemes-blocks-block-' . $block['attrs']['block_id'] );
                 }
 
                 // Google Maps Block
                 if( $block['blockName'] == 'athemes/athemes-blocks-block-google-maps' ) {
-                    $this->css .= ATBLOCKS_Css_Output::get_google_maps_block_css( $block['attrs'], 'athemes-blocks-block-' . $block['attrs']['block_id'] );
+                    $css .= ATBLOCKS_Css_Output::get_google_maps_block_css( $block['attrs'], 'athemes-blocks-block-' . $block['attrs']['block_id'] );
                 }
 
             }
+
+            $this->css .= $css;
+
+            return $css;
         }
 
         /**
