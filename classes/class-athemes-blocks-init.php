@@ -189,8 +189,10 @@ if ( ! class_exists( 'ATBLOCKS_Init' ) ) {
             }
 
             $css = $this->generate_athemes_blocks_css( $block );
-            
-            echo '<style>' . wp_strip_all_tags( $css ) . '</style>';
+
+            if ( ! defined( 'REST_REQUEST' ) ) {
+                echo '<style>' . wp_strip_all_tags( $css ) . '</style>';
+            }
 
             return $block_content;
         }
