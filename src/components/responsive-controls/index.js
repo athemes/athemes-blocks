@@ -123,7 +123,7 @@ function ResponsiveControls ( props ) {
     }
 
     const setPreviewType = ( deviceType ) => {
-        let previewArea = document.querySelector( '.edit-post-visual-editor__content-area' );
+        let previewArea = document.querySelector( '.editor-visual-editor' );
 
         if( previewArea !== null ) {
             previewArea.classList.remove('athemes-blocks-responsive-preview-desktop');

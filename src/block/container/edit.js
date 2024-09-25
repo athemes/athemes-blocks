@@ -321,6 +321,54 @@ const edit = ( props ) => {
                             </Button>
                         </ButtonGroup> )}
 
+                        <ResponsiveControls 
+                            blockProps={ props } 
+                            unitsFor={ ['contentPaddingLeftRight'] } 
+                            units={ ['px', '%', 'rem', 'em', 'vw'] } />
+                        <BaseControl 
+                            className="athemes-blocks-base-control"
+                            label={ __( 'Content Padding', 'athemes-blocks' ) } /> 
+                                                        
+                        { "Desktop" === deviceType && (
+                        <BaseControl className="athemes-blocks-base-control">
+                            <RangeControl
+                                label={ athemes_icons( 'margin-left-right' ) }
+                                className={ "athemes-blocks-spacement-control" }
+                                value={ props.attributes.contentPaddingLeftRight }
+                                onChange={ ( value ) => setAttributes( { contentPaddingLeftRight: value } ) }
+                                min={ 0 }
+                                max={ 100 }
+                                allowReset
+                                resetFallbackValue={ 0 }
+                            />
+                        </BaseControl> )}
+                        { "Tablet" === deviceType && (
+                        <BaseControl className="athemes-blocks-base-control">
+                            <RangeControl
+                                label={ athemes_icons( 'margin-left-right' ) }
+                                className={ "athemes-blocks-spacement-control" }
+                                value={ props.attributes.contentPaddingLeftRightTablet }
+                                onChange={ ( value ) => setAttributes( { contentPaddingLeftRightTablet: value } ) }
+                                min={ 0 }
+                                max={ 100 }
+                                allowReset
+                                resetFallbackValue={ 0 }
+                            />
+                        </BaseControl> )}
+                        { "Mobile" === deviceType && (
+                        <BaseControl className="athemes-blocks-base-control">
+                            <RangeControl
+                                label={ athemes_icons( 'margin-left-right' ) }
+                                className={ "athemes-blocks-spacement-control" }
+                                value={ props.attributes.contentPaddingLeftRightMobile }
+                                onChange={ ( value ) => setAttributes( { contentPaddingLeftRightMobile: value } ) }
+                                min={ 0 }
+                                max={ 100 }
+                                allowReset
+                                resetFallbackValue={ 0 }
+                            />
+                        </BaseControl> )}
+
                         <BaseControl 
                             label={ __( 'Display On', 'athemes-blocks' ) }
                         >

@@ -281,9 +281,8 @@
     }
 
     & + .components-base-control {
-        .components-base-control__label {
-            margin-bottom: 18px;
-        }
+        margin-bottom: 10px;
+
         .components-input-control__label {
             margin-bottom: 11px !important;
         }
@@ -354,13 +353,19 @@
 // Responsive Preview
 .athemes-blocks-responsive-preview-tablet,
 .athemes-blocks-responsive-preview-mobile {
-    margin: 0 auto;
+    .editor-styles-wrapper {
+        margin: 0 auto;
+    }
 }
 .athemes-blocks-responsive-preview-tablet {
-    max-width: 720px;
+    .editor-styles-wrapper {
+        max-width: 720px;
+    }
 }
 .athemes-blocks-responsive-preview-mobile {
-    max-width: 320px;
+    .editor-styles-wrapper {
+        max-width: 320px;
+    }
 }
 
 #widgets-editor,

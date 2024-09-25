@@ -44,6 +44,10 @@ export default {
         type: 'string',
         default: 'center'
     } ),
+    ...createResponsiveAttributes( 'contentPaddingLeftRight', {
+        type: 'number',
+        default: 15
+    }, true ),
     linkColorHover: {
         type: 'string',
         default: ''
