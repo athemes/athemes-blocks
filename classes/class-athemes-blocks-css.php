@@ -29,6 +29,13 @@ if ( ! class_exists( 'ATBLOCKS_Css' ) ) {
                 'contentWidthSizeMobile' => $block_content_full_width,
                 'contentWidthSizeMobileUnit' => 'px',
 
+                'contentPaddingLeftRight' => 15,
+                'contentPaddingLeftRightUnit' => 'px',
+                'contentPaddingLeftRightTablet' => 15,
+                'contentPaddingLeftRightTabletUnit' => 'px',
+                'contentPaddingLeftRightMobile' => 15,
+                'contentPaddingLeftRightMobileUnit' => 'px',
+
                 'wrapperZindex' => 0,
 
                 'wrapperContentAlignment' => 'center',
@@ -143,6 +150,43 @@ if ( ! class_exists( 'ATBLOCKS_Css' ) ) {
                     $desktopSelectors['.athemes-blocks-block-container-wrapper']['justify-content'],
                     $tabletSelectors['.athemes-blocks-block-container-wrapper']['justify-content'], 
                     $atts['wrapperContentAlignmentMobile'] 
+                )
+            );
+
+            // Content Padding
+            $desktopSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-block-container-wrapper-content'] = array_merge(
+                $desktopSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-block-container-wrapper-content'],
+                array(
+                    'padding-left' => ATBLOCKS_Helpers::get_spacement_value( $atts, 'contentPaddingLeftRight', '' ) . $atts['contentPaddingLeftRightUnit'],
+                    'padding-right' => ATBLOCKS_Helpers::get_spacement_value( $atts, 'contentPaddingLeftRight', '' ) . $atts['contentPaddingLeftRightUnit']
+                )
+            );
+            $tabletSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-block-container-wrapper-content'] = array_merge(
+                $tabletSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-block-container-wrapper-content'],
+                array(
+                    'padding-left' => ATBLOCKS_Helpers::get_no_repeated_css_value( 
+                        $desktopSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-block-container-wrapper-content']['padding-left'], 
+                        ATBLOCKS_Helpers::get_spacement_value( $atts, 'contentPaddingLeftRight', 'Tablet' ) . $atts['contentPaddingLeftRightTabletUnit']
+                    ),
+                    'padding-right' => ATBLOCKS_Helpers::get_no_repeated_css_value( 
+                        $desktopSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-block-container-wrapper-content']['padding-right'], 
+                        ATBLOCKS_Helpers::get_spacement_value( $atts, 'contentPaddingLeftRight', 'Tablet' ) . $atts['contentPaddingLeftRightTabletUnit']
+                    )
+                )
+            );
+            $mobileSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-block-container-wrapper-content'] = array_merge(
+                $mobileSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-block-container-wrapper-content'],
+                array(
+                    'padding-left' => ATBLOCKS_Helpers::get_no_repeated_css_value( 
+                        $desktopSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-block-container-wrapper-content']['padding-left'], 
+                        $tabletSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-block-container-wrapper-content']['padding-left'],
+                        ATBLOCKS_Helpers::get_spacement_value( $atts, 'contentPaddingLeftRight', 'Mobile' ) . $atts['contentPaddingLeftRightMobileUnit']
+                    ),
+                    'padding-right' => ATBLOCKS_Helpers::get_no_repeated_css_value( 
+                        $desktopSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-block-container-wrapper-content']['padding-right'], 
+                        $tabletSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-block-container-wrapper-content']['padding-right'],
+                        ATBLOCKS_Helpers::get_spacement_value( $atts, 'contentPaddingLeftRight', 'Mobile' ) . $atts['contentPaddingLeftRightMobileUnit']
+                    )
                 )
             );
 
