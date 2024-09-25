@@ -19,10 +19,24 @@ if ( ! class_exists( 'ATBLOCKS_Helpers' ) ) {
         public static function mount_css( $selectors, $id, $media_querie_breakpoint = '' ) {
             $output = $css = '';
             $values = array();
-            
+
             $id = '.' . $id;
             foreach( $selectors as $selector => $css_values ) {
+                $has_values = false;
+
+                foreach( $css_values as $property => $value ) {
+                    if( $value ) {
+                        $has_values = true;
+                        break;
+                    }
+                }
+
+                if( ! $has_values ) {
+                    continue;
+                }
+
                 $css .= $id . ' > ' . $selector . '{';
+                
                 foreach( $css_values as $property => $value ) {
                     if( $value ) {
                         $css .= $property . ':' . $value . ';';
@@ -95,6 +109,7 @@ if ( ! class_exists( 'ATBLOCKS_Helpers' ) ) {
          */
         public static function get_spacement_value( $atts, $attName, $deviceType ) {
             $type = ( strpos( $attName, 'Margin' ) !== FALSE ) ? 'margin' : 'padding'; 
+            $is_content_padding = ( strpos( $attName, 'contentPadding' ) !== FALSE ) ? true : false;
             $value = '';
 
             if( $type == 'margin' ) {
@@ -103,12 +118,14 @@ if ( ! class_exists( 'ATBLOCKS_Helpers' ) ) {
                 } else {
                     $value = $atts[$attName . $deviceType];
                 }
-            } else if( $type == 'padding' ) {
+            } else if( $type == 'padding' && ! $is_content_padding ) {
                 if( $atts[ 'wrapperPaddingToggle' . $deviceType ] ) {
                     $value = $atts['wrapperPadding' . $deviceType];
                 } else {
                     $value = $atts[$attName . $deviceType];
                 }
+            } else if( $is_content_padding ) {
+                $value = $atts[$attName . $deviceType];
             }
         
             return $value;

@@ -134,6 +134,16 @@ export function athemes_icons( icon_id ) {
                 </svg>
             } />
             break;
+
+        case 'margin-left-right':
+            icon = <Icon icon={
+                <svg width="19" height="19" viewBox="0 -1 25 25">
+                    <rect height="19" width="19" y="2.99565" x="2.61607" stroke="#bbbbbb" fill="#FFF"/>
+                    <rect stroke="#000" strokeWidth="0" height="19" width="3" y="3" x="2.5" fill="#335eea"/>
+                    <rect stroke="#000" strokeWidth="0" height="19" width="3" y="3" x="18.5" fill="#335eea"/>
+                </svg>
+            } />
+            break;
         
         case 'padding-top':
         case 'margin-top':

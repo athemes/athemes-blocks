@@ -40,6 +40,16 @@ function style( props, deviceType ) {
     tabletSelectors['.athemes-blocks-block-container-wrapper']['justify-content'] = atts.wrapperContentAlignmentTablet;
     mobileSelectors['.athemes-blocks-block-container-wrapper']['justify-content'] = atts.wrapperContentAlignmentMobile;
 
+    // Content padding
+    desktopSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-block-container-wrapper-content']['padding-left'] = get_spacement_value( atts, 'contentPaddingLeftRight', '' ) + atts.contentPaddingLeftRightUnit;
+    desktopSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-block-container-wrapper-content']['padding-right'] = get_spacement_value( atts, 'contentPaddingLeftRight', '' ) + atts.contentPaddingLeftRightUnit;
+
+    tabletSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-block-container-wrapper-content']['padding-left'] = get_spacement_value( atts, 'contentPaddingLeftRight', 'Tablet' ) + atts.contentPaddingLeftRightTabletUnit;
+    tabletSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-block-container-wrapper-content']['padding-right'] = get_spacement_value( atts, 'contentPaddingLeftRight', 'Tablet' ) + atts.contentPaddingLeftRightTabletUnit;
+
+    mobileSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-block-container-wrapper-content']['padding-left'] = get_spacement_value( atts, 'contentPaddingLeftRight', 'Mobile' ) + atts.contentPaddingLeftRightMobileUnit;
+    mobileSelectors['.athemes-blocks-block-container-wrapper > .athemes-blocks-block-container-wrapper-content']['padding-right'] = get_spacement_value( atts, 'contentPaddingLeftRight', 'Mobile' ) + atts.contentPaddingLeftRightMobileUnit;
+
     // Border Radius
     desktopSelectors['.athemes-blocks-block-container-wrapper']['border-radius'] = atts.wrapperBorderRadius + 'px';
 
@@ -93,12 +103,14 @@ function style( props, deviceType ) {
 
     let mobileCss = '';
     mobileCss += mount_css( `.athemes-blocks-block-${props.clientId.substr( 0, 8 )} >`, mobileSelectors, deviceType );
-    
+
     return [ desktopCss, tabletCss, mobileCss ];
 }
 
 function get_spacement_value( atts, attName, deviceType ) {
-    const type = attName.indexOf('Margin') > 0 ? 'margin' : 'padding'; 
+    const type = attName.indexOf('Margin') !== -1 ? 'margin' : 'padding';
+    const isContentPadding = attName.indexOf('contentPadding') !== -1 ? true : false;
+
     let value = '';
 
     if( type == 'margin' ) {
@@ -107,12 +119,14 @@ function get_spacement_value( atts, attName, deviceType ) {
         } else {
             value = atts[attName + deviceType];
         }
-    } else if( type == 'padding' ) {
+    } else if( type == 'padding' && ! isContentPadding ) {
         if( atts[ 'wrapperPaddingToggle' + deviceType ] ) {
             value = atts['wrapperPadding' + deviceType];
         } else {
             value = atts[attName + deviceType];
         }
+    } else if( isContentPadding ) {
+        value = atts[attName + deviceType];
     }
 
     return value;
