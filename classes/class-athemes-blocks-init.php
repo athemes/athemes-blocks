@@ -22,10 +22,6 @@ if ( ! class_exists( 'ATBLOCKS_Init' ) ) {
             // Enqueue scripts
             add_action( 'enqueue_block_assets', array( $this, 'athemes_blocks_enqueue_scripts' ) );
 
-            add_action( 'enqueue_block_assets', function() {
-                wp_enqueue_style('custom-block-styles', get_template_directory_uri() . '/css/placeholder.css');
-            } );
-
             add_action( 'render_block', array( $this, 'append_blocks_internal_style' ), 10, 2 );
         }
 
